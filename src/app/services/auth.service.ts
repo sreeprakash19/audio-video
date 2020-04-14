@@ -69,7 +69,6 @@ export class AuthService {
 
     }
   }
-
   private updateUserData(user, olduser ){
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
     const data = {
@@ -102,6 +101,7 @@ export class AuthService {
     this.router.navigate(['']);
     await this.afAuth.signOut();
   }
+
   createPoint(lat, lng, pincode) {
     //const id = this.afs.createId();
     const collection = this.afs.collection(`pincode`);
@@ -114,6 +114,7 @@ export class AuthService {
       querySnapshot => {
         querySnapshot.forEach(doc => {
           const mycoordinates = [Number(doc.Lat), Number(doc.Lng)]
+          console.log('query return', mycoordinates);
           this.mypinitems.push( { type: 'Point', coordinates: mycoordinates });
         });
       });

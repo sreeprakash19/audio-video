@@ -2,8 +2,7 @@ import { Component, ChangeDetectorRef, OnInit, ViewChild} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
-
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -39,12 +38,11 @@ export class CustomerDashboardComponent implements OnInit {
 
   imgdefault = './assets/girl.png';
   constructor(public auth: AuthService , media: MediaMatcher, private fb: FormBuilder, private cdr: ChangeDetectorRef){
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');//small screen
     this.mobileQueryListener = () => cdr.detectChanges();
     this.mobileQuery.addEventListener('change', this.mobileQueryListener);
   }
-  togglesidenav(statesidenav: boolean){
-    
+  togglesidenav(statesidenav: boolean){    
     switch(statesidenav){
       case true:
         this.flexsetting = '0 0 9%';//desktop

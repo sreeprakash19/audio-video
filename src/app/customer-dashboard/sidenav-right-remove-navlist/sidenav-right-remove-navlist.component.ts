@@ -48,7 +48,7 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
     switch(selectedItem.name){
       case 'Partners':
         this.sidenav.toggle();
-        this.router.navigate([{ outlets: {  rightsidebar: ['map'] } }] ,{relativeTo: this.route});
+        this.router.navigate([{ outlets: {  rightsidebar: ['map'] } }] , {relativeTo: this.route});
         break;
     }
   }

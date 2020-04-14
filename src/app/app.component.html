@@ -1,8 +1,18 @@
 <!--
+  Remove old nodejs
   update node -v: v12.16.2
-
-  ng update @angular/cli
+  Exploere %APPDATA% folder
+  cd C:\Users\gmano\AppData\Roaming
+  rimraf -rf ./npm-cache/
+  rimraf -rf ./npm/
+  npm cache verify
+  restart PC
+  npm install -g rimraf
   npm i @angular/cli -g
+  npm install -g firebase-tools
+  inside project-> ng update @angular/cli @angular/core
+  Also Update Angular Material-> npm update @angular/material @angular/cdk
+  but typescript and zone version is mismatching
   ng version - Angular CLI: 9.1.1
   cd .\Apr2020\
   ng new checkapp
@@ -10,12 +20,12 @@
   ng build
   
   Enable IVY : 
-  1.tsconfig.app.json=> 
+  1.tsconfig.json=> 
     "angularCompilerOptions": {
     "enableIvy": true
   2.  In the angular.json workspace
 
-  Lighthouse: 116kb, Score 99
+  Lighthouse: Initial Load-> 116kb, Score 99
 
   Install Firebase & firestore
   npm install @angular/fire firebase --save
@@ -36,12 +46,13 @@ const config = {
   measurementId: 'G-CM042FVEF4'
 };
 
+Inside imports->
 AngularFireModule.initializeApp(config),
 AngularFirestoreModule, // firestore
 AngularFireAuthModule, // auth
 AngularFireStorageModule // storage
 
-Firebase Deploy:
+Firebase Deploy hosting:
 
 firebase init
 ng build --prod
@@ -63,6 +74,7 @@ inside imports
     ReactiveFormsModule,
     AppMaterialModule,
     FlexLayoutModule
+
 //Create shared/ Material Module and add the root UserService
 ng g module app-material
 ng g module app-shared
@@ -102,27 +114,28 @@ Performance 79/ 3.5 sec/ 1.3Mb
 //Install Mapbox-gl
 npm install ngx-mapbox-gl mapbox-gl@0.54.0 --save
 npm install @types/mapbox-gl@0.51.10 --save-dev
- in angular.json
+In angular.json
 
 "styles": [
         ...
         "./node_modules/mapbox-gl/dist/mapbox-gl.css",
         "./node_modules/@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css"
       ],
-in your polyfill.ts file
-
-(window as any).global = window;
-//Inside the customer-dashboard.module.ts
+In your polyfill.ts file -> (window as any).global = window;
+//Inside the customer-dashboard.module.ts / map-start.module
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+Inside Imports section->
     NgxMapboxGLModule.withConfig({
       accessToken: 'pk.eyJ1IjoiZ21hbm9qaXNhYWMiLCJhIjoiY2s4NnhpMTQ5MGMxZzNlbXgzdGFvOGk3dyJ9.IOJ-O6nv_n35XqI7P3dpyA'
     })
+    Eager performance 57% with 4.9 sec meaningful paint 2.1Mb initial load
+
+    Lazy Performance 64% with 4.1 sec meaningful paint & 1.4Mb initial load
 
     For users logging in -> https://embed.plnkr.co/plunk/jAVScZ
     When lazy load display spinner -> https://web.dev/route-level-code-splitting-in-angular/
 
-    performance 57 with 4.9 sec meaningful paint
-    2.1Mb initial load
+
 
 //Lazy load Maps
     performance 64 with 4.1 sec meaningful paint
