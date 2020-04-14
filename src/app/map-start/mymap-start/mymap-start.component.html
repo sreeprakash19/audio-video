@@ -1,0 +1,50 @@
+<mgl-map
+[style]="'mapbox://styles/mapbox/dark-v9'"
+[zoom]="[13]"
+[center]="[mylng, mylat]"
+[cursorStyle]="cursorStyle"
+(load)="map = $event"
+(click)="onClick(map = $event)"
+>
+<mgl-control mglNavigation position="bottom-left"></mgl-control>
+<mgl-control mglGeolocate position="bottom-left"></mgl-control>
+
+<mgl-marker [lngLat]="[mylng, mylat]" [draggable]="false"></mgl-marker>
+  <mgl-control
+  position="top-right">
+  <form [formGroup]="LocationForm" (ngSubmit)="Searchdb(LocationForm )">
+    <mat-form-field color="blue">
+      <input matInput     placeholder="Enter Pincode" value="629004">
+    </mat-form-field>
+    <button
+    mat-fab
+    color="primary"
+    type="submit" [disabled]="!LocationForm.valid"
+     >
+    Search
+    </button>
+  </form>
+
+  </mgl-control>
+  <mgl-geojson-source
+    id="symbols-source"
+  >
+    <mgl-feature
+      *ngFor="let geometry of geometries"
+      [geometry]="geometry"
+    ></mgl-feature>
+  </mgl-geojson-source>
+  <mgl-layer
+    id="symbols"
+    type="symbol"
+    source="symbols-source"
+    [layout]="{
+      'icon-image': 'rocket-15'
+    }"
+
+    (mouseEnter)="cursorStyle = 'pointer'"
+    (mouseLeave)="cursorStyle = ''"
+  >
+  </mgl-layer>
+
+</mgl-map>

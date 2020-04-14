@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span  fxHide fxShow.gt-xs>Consent App for New Generation</span>
+        <span  fxShow fxHide.gt-xs>Consent App for New Gen!</span>
+        <span fxFlex> </span>
+        <div *ngIf="auth.user$ | async as user; else login" >
+            <button mat-raised-button fxHide fxShow.gt-xs color="accent" (click)="auth.signOut()"><i
+                    class="material-icons" (click)="auth.signOut()"> exit_to_app</i><span> Welcome
+                    {{user.displayName}}</span></button>
+            <button mat-raised-button fxShow fxHide.gt-xs (click)="auth.signOut()"><i class="material-icons"
+                    (click)="auth.signOut()"> exit_to_app</i></button>
+            
+        </div>
+        <ng-template #login>
+            <button mat-raised-button fxHide fxShow.gt-xs color="accent" (click)="auth.googleSignin()"><i
+                    class="material-icons" (click)="auth.googleSignin()">
+                    power_settings_new</i><span>SignUp</span></button>
+            <button mat-raised-button fxShow fxHide.gt-xs (click)="auth.googleSignin()"><i class="material-icons"
+                    (click)="auth.googleSignin()"> power_settings_new</i></button>
+            
+        </ng-template>
+    </mat-toolbar-row>
+</mat-toolbar>

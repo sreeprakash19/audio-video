@@ -1,0 +1,33 @@
+
+<mat-sidenav-container hasBackdrop="false" >     
+    <mat-sidenav #leftSidenav position="start" mode="over" fixedInViewport="true" [fixedTopGap]="mobileQuery.matches ? 56 : 64" >
+        <router-outlet name='rightsidebar'></router-outlet>    
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div  fxLayout="row wrap" style="padding: 8px;">
+            <div fxFlex="grow" style="height: 64px;">
+                <app-toolbar-add-input  [sidenav]="leftSidenav"></app-toolbar-add-input>
+            </div>
+            <button mat-raised-button color="warn" fxFlex="none" fxFlexOffset="10px">
+                Your Location is: 
+            </button>
+
+            <div fxFlex="grow"></div>
+
+           <div fxFlex="grow" fxLayoutAlign="center center" ngStyle.gt-xs="margin-top:10px; height: 50vh;"
+           ngStyle.lt-sm="margin-top:8px; height: 40vh;">
+            </div>
+            <div fxFlex="grow" style="height: 10px;"></div>
+            <p fxFlex="grow"  *ngFor="let content of fillerContent" >{{content}}</p>
+        </div>
+    </mat-sidenav-content>
+    <mat-sidenav #rightSidenav position="end" mode="side" opened  fixedInViewport="true" [fixedTopGap]="mobileQuery.matches ? 56 : 64"  [fxFlex]="mobileQuery.matches ? getMobileFlexOptions(): getFlexOptions()">
+        <div *ngIf="auth.user$ | async as user; else login" >
+            <app-sidenav-right-remove-navlist  [sidenav]="leftSidenav" [imageStr]="user.photoURL" (flexchange)="togglesidenav($event)"></app-sidenav-right-remove-navlist>
+        </div>
+        <ng-template #login>
+            <app-sidenav-right-remove-navlist  [sidenav]="leftSidenav" [imageStr]="'./assets/girl.png'" (flexchange)="togglesidenav($event)"></app-sidenav-right-remove-navlist>
+        </ng-template>
+         
+    </mat-sidenav> 
+</mat-sidenav-container>
