@@ -35,6 +35,7 @@ export class AuthService {
   isOnline$: Observable<boolean> = undefined;
   mypinitems: IGeometry[] = [];
 
+
   constructor( private afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) { 
     //afAuth needs clear understanding .. it will have data from chrome user login
     this.isOnline$ = merge(

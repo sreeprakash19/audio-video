@@ -43,6 +43,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 @NgModule({
   declarations: [],
   imports: [
+    LayoutModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -85,6 +86,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     DragDropModule
   ],
   exports: [
+    LayoutModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
