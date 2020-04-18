@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from '../../services/auth.service';
+
 interface Page {
   link: string;
   name: string;
@@ -13,8 +15,9 @@ interface Page {
 })
 export class SidenavRightRemoveNavlistComponent implements OnInit {
   @Input() sidenav: MatSidenav;
-
-  @Input() imageStr: string;
+  @Input() showarrow: boolean;
+  @Input() mymedia: boolean;
+  imageStr = './assets/girl.png';
   @Output() flexchange = new EventEmitter<boolean>();
   isMenuOpen = true;
   contentMargin = 240;
@@ -29,12 +32,25 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
     {name: 'Account', link: 'some-link', icon: 'account_circle'},
     {name: 'Remove', link: 'some-link', icon: 'event_busy'}
   ];
-  constructor(private router: Router, private route: ActivatedRoute) { 
-
+  constructor(public auth: AuthService, private router: Router, private route: ActivatedRoute) { 
+    this.auth.user$.subscribe(userdata=>{
+      this.imageStr = userdata.customphotoURL;
+    });
   }
 
   ngOnInit(): void {
     console.log(this.imageStr);
+  }
+  onToolbarFabToggle(){
+    if(this.sidenav.opened){
+      this.sidenav.toggle();
+    }
+    if(!this.isMenuOpen) {
+      this.flexchange.emit(false);
+    } else {
+      this.flexchange.emit(true);
+    }
+    this.isMenuOpen = !this.isMenuOpen;
   }
   onToolbarMenuToggle() {
     if(!this.isMenuOpen) {
@@ -45,12 +61,35 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
   handleClick(selectedItem) {
+    if(!this.sidenav.opened){
+      this.sidenav.toggle();
+    }
+    if(this.mymedia){
+      this.isMenuOpen = false; //Make the menu close in the first place
+      this.onToolbarMenuToggle();
+    }
+
     switch(selectedItem.name){
       case 'Partners':
-        this.sidenav.toggle();
         this.router.navigate([{ outlets: {  rightsidebar: ['map'] } }] , {relativeTo: this.route});
         break;
+      case 'Learning':
+        this.router.navigate([{ outlets: {  rightsidebar: ['learning-page'] } }] , {relativeTo: this.route});
+        break;
+      default:
+        break;        
     }
+  }
+
+  profileclick(){
+    if(!this.sidenav.opened){
+      this.sidenav.toggle();
+    }
+    if(this.mymedia){
+      this.isMenuOpen = false;
+      this.onToolbarMenuToggle();
+    }
+    this.router.navigate([{ outlets: {  rightsidebar: ['profile-page'] } }] , {relativeTo: this.route});
   }
 
 }

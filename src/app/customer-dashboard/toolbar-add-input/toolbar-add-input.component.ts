@@ -1,6 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-toolbar-add-input',
@@ -8,10 +6,20 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./toolbar-add-input.component.css']
 })
 export class ToolbarAddInputComponent implements OnInit {
-  @Input() sidenav: MatSidenav;
+  @Output() menuchange = new EventEmitter<boolean>();
+  isMenuOpen = true;
   constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
+  }
+  menuclick(){
+    console.log('clicked menu');
+    if(!this.isMenuOpen) {
+      this.menuchange.emit(false);
+    } else {
+      this.menuchange.emit(true);
+    }
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
 }

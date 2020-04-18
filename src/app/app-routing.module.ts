@@ -3,8 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home/(rightsidebar:nomap)', pathMatch: 'full'}
-];
+  { path: '', redirectTo: '/home/(rightsidebar:nomap)', pathMatch: 'full'}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

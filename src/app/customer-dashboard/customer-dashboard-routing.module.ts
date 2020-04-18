@@ -6,13 +6,13 @@ import { ChildshelloutletComponent } from './childshelloutlet/childshelloutlet.c
 const routes = [
     { path: 'home', component: CustomerDashboardComponent,
     children: [
-        {
-            path: '',
-            redirectTo: '/home/(rightsidebar:nomap)',
-            pathMatch: 'full',
-        },
            { path: 'nomap', outlet: 'rightsidebar', component: ChildshelloutletComponent },
-           { path: 'map', outlet: 'rightsidebar', loadChildren: () => import('../map-start/map-start.module').then(m => m.MapStartModule) }
+           { path: 'map', outlet: 'rightsidebar', loadChildren: () => import('../map-start/map-start.module').then(m => m.MapStartModule) },
+           // tslint:disable-next-line: max-line-length
+           { path: 'profile-page', outlet: 'rightsidebar', loadChildren: () => import('../profile-page/profile-page.module').then(m => m.ProfilePageModule) },
+           // tslint:disable-next-line: max-line-length
+           { path: 'learning-page',outlet: 'rightsidebar', loadChildren: () => import('../learning-page/learning-page.module').then(m => m.LearningPageModule) }
+         
     ] }
 ];
 

@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router, RouterEvent, NavigationStart, NavigationEnd} from '@angular/router';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -10,21 +11,15 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./customer-dashboard.component.css']
 })
 export class CustomerDashboardComponent implements OnInit {
-
+  loading: boolean;
+  arrow = false;
   mobileQuery: MediaQueryList;
 
   private mobileQueryListener: () => void;
   @ViewChild('rightSidenav', { static: true }) public Sidenav: MatSidenav;
-  fillerNav = Array.from({length: 5}, (_, i) => `Nav Item ${i + 1}`);
 
-  fillerContent = Array.from({length: 7}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
   flexsetting = '0 0 4%';
-  flexMobileSetting =  '0 0 13%';
+  flexMobileSetting =  '0 0 13.2%';
 
   mylat = 37.75;
   mylng = -122.41;
@@ -35,14 +30,29 @@ export class CustomerDashboardComponent implements OnInit {
   LocationForm = this.fb.group({
     pincode: [629004, Validators.required]
   });
+  @ViewChild('leftSidenav', { static: true }) mainsidenav: MatSidenav;
 
-  imgdefault = './assets/girl.png';
-  constructor(public auth: AuthService , media: MediaMatcher, private fb: FormBuilder, private cdr: ChangeDetectorRef){
+  // tslint:disable-next-line: max-line-length
+  constructor(public router: Router, public auth: AuthService , media: MediaMatcher, private fb: FormBuilder, private cdr: ChangeDetectorRef){
     this.mobileQuery = media.matchMedia('(max-width: 600px)');//small screen
     this.mobileQueryListener = () => cdr.detectChanges();
     this.mobileQuery.addEventListener('change', this.mobileQueryListener);
+    this.router.events.subscribe(
+      (event: RouterEvent): void => {
+        if (event instanceof NavigationStart) {
+          this.loading = true;
+        } else if (event instanceof NavigationEnd) {
+          this.loading = false;
+        }
+      }
+    );
+  }
+  miniside(statesidenav: boolean){
+    console.log('rx statesidenav from toolbar', statesidenav);
   }
   togglesidenav(statesidenav: boolean){    
+    console.log('rx statesidenav', statesidenav);
+    this.arrow = statesidenav;
     switch(statesidenav){
       case true:
         this.flexsetting = '0 0 9%';//desktop
@@ -50,7 +60,7 @@ export class CustomerDashboardComponent implements OnInit {
         break;
       case false:
         this.flexsetting = '0 0 4%';//desktop
-        this.flexMobileSetting = '0 0 13%';
+        this.flexMobileSetting = '0 0 13.2%';
         break;
     }
   }
@@ -62,5 +72,13 @@ export class CustomerDashboardComponent implements OnInit {
     return  `${this.flexMobileSetting}`;
   }
   ngOnInit(): void {
+    this.auth.stringSubject.subscribe(data => {
+      this.arrow = data;
+      if(data === true){
+        this.flexMobileSetting = '0 0 30%';
+      }else{
+        this.flexMobileSetting = '0 0 13.2%';
+      }
+    });
   }
 }

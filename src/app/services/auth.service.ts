@@ -7,6 +7,7 @@ import { Observable, of, merge, fromEvent } from 'rxjs';
 import { switchMap, first, map} from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import {Subject} from 'rxjs';
 
 export interface IGeometry {
   type: string;
@@ -34,8 +35,8 @@ export class AuthService {
   user$: Observable<User> = null ;
   isOnline$: Observable<boolean> = undefined;
   mypinitems: IGeometry[] = [];
-
-
+  minifabclose$ : Observable<boolean> = undefined;
+  public stringSubject = new Subject<boolean>();
   constructor( private afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) { 
     //afAuth needs clear understanding .. it will have data from chrome user login
     this.isOnline$ = merge(
@@ -82,7 +83,7 @@ export class AuthService {
       AnniversaryDate : 'Jan 1',
       BirthDate : 'Jan 1',
       customdisplayName : '',
-      customphotoURL : '',
+      customphotoURL : user.photoURL,
       GiftsBank: 0
     };
     const returningUser = {
@@ -121,6 +122,10 @@ export class AuthService {
       });
 
     return this.mypinitems;
+  }
+
+  myminifab(data: boolean){
+    this.stringSubject.next(data);
   }
 
 }

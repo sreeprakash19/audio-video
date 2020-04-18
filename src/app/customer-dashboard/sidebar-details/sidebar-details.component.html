@@ -1,0 +1,17 @@
+<div  fxLayout="row wrap" style="padding: 80px;">
+    <div fxFlex="grow">
+        <app-toolbar-add-input (menuchange)="togglesidenav($event)" ></app-toolbar-add-input>
+    </div>    
+    <div fxFlex="grow"></div>
+    <div fxFlex="grow"></div>
+    <div fxFlex="grow"></div>
+    <button mat-raised-button color="warn" fxFlex="none" fxFlexOffset="10px">
+        Your Location is: 
+    </button>
+
+    <div fxFlex="grow"></div>
+
+    <div fxFlex="grow" style="height: 10px;"></div>
+
+    <p fxFlex="grow"  *ngFor="let content of fillerContent" >{{content}}</p>
+</div>
