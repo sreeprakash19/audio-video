@@ -38,11 +38,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSortModule} from '@angular/material/sort';
 import {MatStepperModule} from '@angular/material/stepper';
-
+import {A11yModule} from '@angular/cdk/a11y';
 
 @NgModule({
   declarations: [],
   imports: [
+    A11yModule,
     LayoutModule,
     MatAutocompleteModule,
     MatBadgeModule,
@@ -86,6 +87,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     DragDropModule
   ],
   exports: [
+    A11yModule,
     LayoutModule,
     MatAutocompleteModule,
     MatBadgeModule,

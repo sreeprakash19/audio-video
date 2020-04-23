@@ -59,17 +59,19 @@ export class AuthService {
 
   async googleSignin(){
     const provider = new auth.GoogleAuthProvider();
-    const credential = await this.afAuth.signInWithPopup(provider);
-    const firstTimeLogin = await this.afs.doc(`users/${credential.user.uid}`).valueChanges().pipe(first()).toPromise();
-    console.log('after login', firstTimeLogin);
-    if( firstTimeLogin !== undefined){
-      //console.log('after login- returning user');
-      return this.updateUserData(credential.user, true);
-    } else{
-      //console.log('after login- new user');
-      return this.updateUserData(credential.user, false);
-
-    }
+    this.afAuth.signInWithPopup(provider).then(async getcred => {
+      if(getcred !== null){
+        const credential = await this.afAuth.getRedirectResult();
+        const firstTimeLogin = await this.afs.doc(`users/${getcred.user.uid}`).valueChanges().pipe(first()).toPromise();
+        if( firstTimeLogin !== undefined){
+          //console.log('after login- returning user');
+          return this.updateUserData(getcred.user, true);
+        } else{
+          //console.log('after login- new user');
+          return this.updateUserData(getcred.user, false);
+        }
+      }
+    });
   }
   private updateUserData(user, olduser ){
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);

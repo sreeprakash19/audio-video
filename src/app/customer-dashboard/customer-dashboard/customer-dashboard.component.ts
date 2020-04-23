@@ -51,7 +51,6 @@ export class CustomerDashboardComponent implements OnInit {
     console.log('rx statesidenav from toolbar', statesidenav);
   }
   togglesidenav(statesidenav: boolean){    
-    console.log('rx statesidenav', statesidenav);
     this.arrow = statesidenav;
     switch(statesidenav){
       case true:

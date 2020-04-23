@@ -23,18 +23,24 @@ export class SidebarDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
   togglesidenav(statesidenav: boolean){    
+    
     switch(statesidenav){
       case true:
         if(!this.sidenav.opened){
-          this.auth.myminifab(false);
-          
+          this.auth.myminifab(false);          
           this.sidenav.open();
+        } else{
+          this.auth.myminifab(true);          
+          this.sidenav.close();
         }
         break;
       case false:
         if(this.sidenav.opened){
           this.auth.myminifab(true);
           this.sidenav.close();
+        }else{
+          this.auth.myminifab(false);
+          this.sidenav.open();
         }
         break;
     }

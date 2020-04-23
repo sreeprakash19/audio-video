@@ -7,7 +7,7 @@ import { AppSharedModule } from '../app-shared/app-shared.module';
 import { ChildshelloutletComponent } from './childshelloutlet/childshelloutlet.component';
 import { SidenavRightRemoveNavlistComponent } from './sidenav-right-remove-navlist/sidenav-right-remove-navlist.component';
 import { ToolbarAddInputComponent } from './toolbar-add-input/toolbar-add-input.component';
-import { SidebarDetailsComponent } from './sidebar-details/sidebar-details.component';
+import { SidebarDetailsComponent,  } from './sidebar-details/sidebar-details.component';
 
 
 
