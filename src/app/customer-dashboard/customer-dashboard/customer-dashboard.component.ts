@@ -60,9 +60,6 @@ export class CustomerDashboardComponent implements OnInit {
         this.flexMobileSetting = '0 0 30%';
         break;
       case false:
-        if(this.LeftSidenav.opened){
-          this.LeftSidenav.toggle();
-        }
         this.flexsetting = '0 0 4%';//desktop
         this.flexMobileSetting = '0 0 13.2%';
         break;
