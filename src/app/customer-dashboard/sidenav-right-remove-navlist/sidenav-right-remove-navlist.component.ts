@@ -51,7 +51,8 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
     if (this.sidenav.opened) {
       this.sidenav.toggle();
     }
-    if (!this.isMenuOpen &&  this.mymedia) {
+    console.log('this.showarrow', this.showarrow);
+    if (this.showarrow) {
       this.flexchange.emit(false);
     } else {
       this.flexchange.emit(true);
@@ -59,7 +60,7 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
   onToolbarMenuToggle() {
-    if (!this.isMenuOpen) {
+    if (!this.showarrow) {
       this.flexchange.emit(false);
     } else {
       this.flexchange.emit(true);
@@ -70,6 +71,7 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
     if (!this.sidenav.opened) {
       this.sidenav.toggle();
     }
+    this.onToolbarMenuToggle();
     if (this.mymedia) {
       this.isMenuOpen = false; //Make the menu close in the first place
       this.onToolbarMenuToggle();

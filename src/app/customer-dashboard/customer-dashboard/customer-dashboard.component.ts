@@ -17,7 +17,8 @@ export class CustomerDashboardComponent implements OnInit {
 
   private mobileQueryListener: () => void;
   @ViewChild('rightSidenav', { static: true }) public Sidenav: MatSidenav;
-
+  @ViewChild('leftSidenav', { static: true }) public LeftSidenav: MatSidenav;
+  
   flexsetting = '0 0 4%';
   flexMobileSetting =  '0 0 13.2%';
 
@@ -51,6 +52,7 @@ export class CustomerDashboardComponent implements OnInit {
     console.log('rx statesidenav from toolbar', statesidenav);
   }
   togglesidenav(statesidenav: boolean){    
+    console.log('click', statesidenav );    
     this.arrow = statesidenav;
     switch(statesidenav){
       case true:
@@ -58,6 +60,9 @@ export class CustomerDashboardComponent implements OnInit {
         this.flexMobileSetting = '0 0 30%';
         break;
       case false:
+        if(this.LeftSidenav.opened){
+          this.LeftSidenav.toggle();
+        }
         this.flexsetting = '0 0 4%';//desktop
         this.flexMobileSetting = '0 0 13.2%';
         break;
