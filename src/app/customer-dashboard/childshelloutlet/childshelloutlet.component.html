@@ -1,22 +1,24 @@
 <div fxLayout="row wrap"  style="height: calc(100vh - 64px); padding: 10%;">
   <div fxFlex="grow"></div>
-  <div fxFlex="grow" fxLayout="row" fxLayoutAlign="center">
-    <div style="font-size: 24px;">
+  <div fxFlex="grow" fxLayout="row" ngStyle.gt-sm=" height: 20vh;border-color:green; border-radius:20px; border-style:double;" > <!-- fxLayoutAlign="center center"-->
+    <div fxFlex  fxFlexOffset="20px" fxFlexAlign="center"  ngStyle.gt-sm="text-align:center; font-size: 24px; border-color:blue; border-radius:20px; border-style:double;">
+      <!--fxFlexAlign="center" --> 
         MYCONSENT
     </div>
-    <div>
+    <div fxFlex.gt-sm="20%" ngStyle.gt-sm="text-align:center; border-color:red; border-radius:10px; border-style:dotted;">
         .com
     </div>
   </div>
-  <div fxFlex="grow" fxLayout="row wrap" fxLayoutAlign="center">
-    <mat-label style="font-size: 18px;" >Returning Users/ Signup</mat-label>
+  <div ngStyle.gt-sm=" border-color: lawngreen; border-style:dotted; border-radius:20px;" fxFlex="grow" fxLayout="row wrap" fxLayoutAlign="center"  style="height: 25vh;">
+    <mat-label ngStyle.gt-sm="font-size:18px; border-color:yellow; border-radius:25px; border-style:dotted;" >Returning Users/ Signup</mat-label>
     <div fxFlex="grow"></div>
-    <button mat-raised-button color="blue">Login (Google)</button>
+    <div fxFlex="grow"></div>
+    <button ngStyle.gt-sm="border-color:orange; border-style:dotted; border-radius:20px; " mat-raised-button color="blue">Login (Google)</button>
   </div>
   <div fxFlex="grow"></div>
-  <div fxFlex="grow" fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-raised-button color="primary" >Open a Demo</button>
-    <button mat-raised-button color="warn">Preview App</button>
+  <div ngStyle.gt-sm="border-color:green; border-style:double; border-radius:30px; " fxFlex="grow" fxLayout="row" fxLayoutAlign="space-between center">
+    <button ngStyle.gt-sm="border-color:red; border-radius:10px; border-style:dotted;" mat-raised-button color="primary" >Open a Demo</button>
+    <button ngStyle.gt-sm=" border-color: lawngreen; border-style:dotted; border-radius:20px;" mat-raised-button color="warn">Preview App</button>
   </div>
   <div fxFlex="grow"></div>
 </div>

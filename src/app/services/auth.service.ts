@@ -61,7 +61,6 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     this.afAuth.signInWithPopup(provider).then(async getcred => {
       if(getcred !== null){
-        const credential = await this.afAuth.getRedirectResult();
         const firstTimeLogin = await this.afs.doc(`users/${getcred.user.uid}`).valueChanges().pipe(first()).toPromise();
         if( firstTimeLogin !== undefined){
           //console.log('after login- returning user');
