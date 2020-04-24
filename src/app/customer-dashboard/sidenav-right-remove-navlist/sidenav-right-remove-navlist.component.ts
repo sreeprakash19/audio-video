@@ -34,7 +34,7 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
   ];
   constructor(public auth: AuthService, private router: Router, private route: ActivatedRoute) {
     this.auth.user$.subscribe(userdata => {
-      if (userdata !== null) {
+      if (userdata !== undefined && userdata !== null) {
         this.imageStr = userdata.customphotoURL;
         this.userloggedin = true;
       } else{
