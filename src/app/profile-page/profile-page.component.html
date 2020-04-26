@@ -1,5 +1,5 @@
 
-<div fxLayout.gt-xs="row" fxLayout.lt-sm="column" *ngIf="auth.user$ | async as user" ngStyle.lt-sm="min-width: 86vw; margin-top: 5%;" ngStyle.gt-xs="min-width: 50vw; padding: 5%;" fxLayoutGap.lt-sm ="10%" fxLayoutAlign.lt-sm=" center space-between " fxLayoutAlign.gt-xs="space-between  center" >
+<div fxLayout.gt-xs="row" fxLayout.lt-sm="column" ngStyle.lt-sm="min-width: 86vw; margin-top: 5%; margin-bottom: 10%;" ngStyle.gt-xs="min-width: 50vw; padding: 5%;" fxLayoutGap.lt-sm ="10%" fxLayoutAlign.lt-sm=" center space-between " fxLayoutAlign.gt-xs="space-between  center" >
     <div fxFlex="42" fxLayout="column" fxLayoutGap="5%">
         <button fxFlex="10" mat-raised-button color="blue">
             Profile Details
@@ -8,22 +8,22 @@
         <mat-card fxFlex="95" style="background-color: blueviolet;">
             <mat-card-header>
                 <div mat-card-avatar class="avatarclass"></div>
-                <mat-card-title>{{user.displayName}}'s Picture</mat-card-title>
-                <mat-card-subtitle>{{user.Gender}} </mat-card-subtitle>
-                <mat-card-subtitle *ngIf="user.phoneNumber !== null">Ph:{{user.phoneNumber}}</mat-card-subtitle>
-                <mat-card-subtitle *ngIf="user.phoneNumber === null">Ph: Add </mat-card-subtitle>
+                <mat-card-title>{{mylocaluser?.displayName}}'s Picture</mat-card-title>
+                <mat-card-subtitle>{{mylocaluser?.Gender}} </mat-card-subtitle>
+                <mat-card-subtitle *ngIf="mylocaluser?.phoneNumber !== null">Ph:{{mylocaluser?.phoneNumber}}</mat-card-subtitle>
+                <mat-card-subtitle *ngIf="mylocaluser?.phoneNumber === null">Ph: Add </mat-card-subtitle>
             </mat-card-header>
             <mat-spinner *ngIf="showspinner"></mat-spinner>
-            <img mat-card-xl-image src="{{user.customphotoURL}}" (load)="dosomething()"
+            <img mat-card-xl-image src="{{mylocaluser?.customphotoURL}}" (load)="dosomething()"
                 alt="Photo of a User">
             <mat-card-content>
-                 Add DisplayName!{{user.customdisplayName}}                    
+                 Add DisplayName!{{mylocaluser?.customdisplayName}}                    
             </mat-card-content>
             <mat-card-actions>
                 <button mat-raised-button color="warn" fxFlexOffset="0px" fxFlex="auto">Birthday </button>
-                <mat-chip color="primary" fxFlexOffset="8px" fxFlex="auto">{{user.BirthDate}}</mat-chip>
+                <mat-chip color="primary" fxFlexOffset="8px" fxFlex="auto">{{mylocaluser?.BirthDate}}</mat-chip>
                 <button mat-raised-button color="warn" fxFlexOffset="8px" fxFlex="auto">Anniversary</button>
-                <mat-chip color="primary" fxFlexOffset="0px" fxFlex="auto">{{user.AnniversaryDate}}</mat-chip>
+                <mat-chip color="primary" fxFlexOffset="0px" fxFlex="auto">{{mylocaluser?.AnniversaryDate}}</mat-chip>
             </mat-card-actions>
         </mat-card>
     </div>

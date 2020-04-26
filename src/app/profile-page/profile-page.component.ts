@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService, User } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,8 +7,14 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent implements OnInit {
+  mylocaluser: User = null;
   showspinner = true;
   constructor(public auth: AuthService) {
+    this.auth.user$.subscribe( userdata => {
+      if(userdata !== null || userdata!== undefined){
+        this.mylocaluser = userdata;
+      }
+    });
     
    }
 
