@@ -1,5 +1,5 @@
 <mat-nav-list role="list"  ngStyle.gt-xs="overflow-x: hidden;">
-    <mat-list-item (click)="profileclick()">
+    <mat-list-item (click)="rightsidenavprofileclick()">
         <img matListAvatar 
             src= "{{imageStr}}"
             alt="" ngStyle.lt-sm="margin-left:-10px" ngStyle.gt-xs="margin-left:-10px">
@@ -8,14 +8,14 @@
 
     <mat-divider ngStyle.gt-xs="margin-bottom: 5px;" ngStyle.lt-sm="margin-bottom: 5px; margin-top: 5px;"></mat-divider>
 
-    <mat-list-item *ngFor="let page of pages" ngStyle.gt-xs="margin-bottom: -1px;" ngStyle.lt-sm="margin-bottom: 5px;" (click)="handleClick(page)">
+    <mat-list-item *ngFor="let page of pages" ngStyle.gt-xs="margin-bottom: -2px;" ngStyle.lt-sm="margin-bottom: 5px;" (click)="rightsidenavitemsClick(page)">
         <mat-icon  matListIcon  ngStyle.gt-xs="margin-left:-3px" ngStyle.lt-sm="margin-left:-5px">{{page?.icon}}</mat-icon>
         <span ngStyle.gt-xs="margin-left:7px" ngStyle.lt-sm="margin-left:10px">{{ page?.name }} </span>
     </mat-list-item>
     <mat-divider></mat-divider>
 
     <div ngStyle.gt-xs="margin-top: 10px; margin-left:10px;" ngStyle.lt-sm="margin-top: 25px; margin-left:8px;">
-        <button color="primary" mat-mini-fab (click)="onToolbarFabToggle()">
+        <button color="primary" mat-mini-fab (click)="rightsidenavminiFabClick()">
             <mat-icon *ngIf="showarrow">arrow_right</mat-icon>
             <mat-icon *ngIf="!showarrow">arrow_left</mat-icon>
         </button>

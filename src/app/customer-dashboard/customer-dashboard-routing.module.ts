@@ -6,12 +6,13 @@ import { ChildshelloutletComponent } from './childshelloutlet/childshelloutlet.c
 const routes = [
     { path: 'home', component: CustomerDashboardComponent,
     children: [
-           { path: 'nomap', outlet: 'rightsidebar', component: ChildshelloutletComponent },
-           { path: 'map', outlet: 'rightsidebar', loadChildren: () => import('../map-start/map-start.module').then(m => m.MapStartModule) },
+           { path: 'nomap', outlet: 'leftsidebar', component: ChildshelloutletComponent },
            // tslint:disable-next-line: max-line-length
-           { path: 'profile-page', outlet: 'rightsidebar', loadChildren: () => import('../profile-page/profile-page.module').then(m => m.ProfilePageModule) },
+           { path: 'map', outlet: 'leftsidebar', loadChildren: () => import('../map-start/map-start.module').then(m => m.MapStartModule), data: {animation: 'MapPage'}  },
            // tslint:disable-next-line: max-line-length
-           { path: 'learning-page',outlet: 'rightsidebar', loadChildren: () => import('../learning-page/learning-page.module').then(m => m.LearningPageModule) }
+           { path: 'profile-page', outlet: 'leftsidebar', loadChildren: () => import('../profile-page/profile-page.module').then(m => m.ProfilePageModule),  data: {animation: 'ProfilePage'} },
+           // tslint:disable-next-line: max-line-length
+           { path: 'learning-page',outlet: 'leftsidebar', loadChildren: () => import('../learning-page/learning-page.module').then(m => m.LearningPageModule) }
          
     ] }
 ];

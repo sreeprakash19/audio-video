@@ -1,0 +1,9 @@
+.mat-raised-button.mat-blue{
+    background-color: magenta;
+    color: black;
+}
+
+.avatarclass{
+    background-image: url('/assets/man.png'); 
+    background-size: contain;
+}

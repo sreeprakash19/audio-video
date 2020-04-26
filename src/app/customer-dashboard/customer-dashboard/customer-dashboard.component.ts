@@ -4,11 +4,47 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterEvent, NavigationStart, NavigationEnd} from '@angular/router';
+import {
+  animation, trigger, animateChild, group,
+  transition, animate, style, query
+} from '@angular/animations';
+import { RouterOutlet } from '@angular/router';
+
+export const slideInAnimation =
+  trigger('routeAnimations', [
+    transition('ProfilePage <=> MapPage', [
+      style({ position: 'relative' }),
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%'
+        })
+      ]),
+      query(':enter', [
+        style({ left: '-100%'})
+      ]),
+      query(':leave', animateChild()),
+      group([
+        query(':leave', [
+          animate('300ms ease-out', style({ left: '100%'}))
+        ]),
+        query(':enter', [
+          animate('300ms ease-out', style({ left: '0%'}))
+        ])
+      ]),
+      query(':enter', animateChild()),
+    ])
+  ]);
 
 @Component({
   selector: 'app-customer-dashboard',
   templateUrl: './customer-dashboard.component.html',
-  styleUrls: ['./customer-dashboard.component.css']
+  styleUrls: ['./customer-dashboard.component.css'],
+  animations: [
+    slideInAnimation
+  ]
 })
 export class CustomerDashboardComponent implements OnInit {
   loading: boolean;
@@ -52,7 +88,7 @@ export class CustomerDashboardComponent implements OnInit {
     console.log('rx statesidenav from toolbar', statesidenav);
   }
   togglesidenav(statesidenav: boolean){    
-    console.log('click', statesidenav );    
+    console.log('clicked leftsidenav- false dont open sidenav', statesidenav );    
     this.arrow = statesidenav;
     switch(statesidenav){
       case true:
@@ -68,7 +104,6 @@ export class CustomerDashboardComponent implements OnInit {
   getFlexOptions(){
     return  `${this.flexsetting}`;
   }
-
   getMobileFlexOptions(){
     return  `${this.flexMobileSetting}`;
   }
@@ -81,5 +116,8 @@ export class CustomerDashboardComponent implements OnInit {
         this.flexMobileSetting = '0 0 13.2%';
       }
     });
+  }
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

@@ -146,5 +146,13 @@ Inside Imports section->
 ng generate module ProfilePage --route profile-page --module app.module
 ng generate module LearningPage --route learning-page --module app.module
 
+//Overriding material colors
+.mat-button.mat-blue {
+   color: blue;
+}
+.mat-raised-button.mat-blue, .mat-flat-button.mat-blue{
+   background-color: blue;
+   color: white;
+}
 -->
 <router-outlet></router-outlet>

@@ -47,7 +47,54 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.imageStr);
   }
-  onToolbarFabToggle() {
+
+  onToolbarMenuToggle() {
+    if (this.showarrow) {
+      this.flexchange.emit(false);
+    } else {
+      this.flexchange.emit(true);
+    }
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+  rightsidenavprofileclick() {    
+    if (!this.sidenav.opened) {
+      this.sidenav.toggle(); //leftsidenav open if closed
+    }
+    //in mobile
+    if (this.showarrow === true && this.mymedia){
+      this.flexchange.emit(false);
+    }
+    if (this.userloggedin !== false) {
+
+    this.router.navigate([{ outlets: { leftsidebar: ['profile-page'] } }], { relativeTo: this.route });
+    } else {
+      this.router.navigate([{ outlets: { leftsidebar: ['nomap'] } }], { relativeTo: this.route });
+    }
+  }
+  rightsidenavitemsClick(selectedItem) {
+    if (!this.sidenav.opened) {
+      this.sidenav.toggle();
+    }
+    //in mobile
+    if (this.showarrow === true && this.mymedia){
+      this.flexchange.emit(false);
+    }
+    if (this.userloggedin !== false) {
+      switch (selectedItem.name) {
+        case 'Partners':
+          this.router.navigate([{ outlets: { leftsidebar: ['map'] } }], { relativeTo: this.route });
+          break;
+        case 'Learning':
+          this.router.navigate([{ outlets: { leftsidebar: ['learning-page'] } }], { relativeTo: this.route });
+          break;
+        default:
+          break;
+      }
+    }else {
+      this.router.navigate([{ outlets: { leftsidebar: ['nomap'] } }], { relativeTo: this.route });
+    }
+  }
+  rightsidenavminiFabClick() {
     if (this.sidenav.opened) {
       this.sidenav.toggle();
     }
@@ -58,52 +105,5 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
       this.flexchange.emit(true);
     }
     this.isMenuOpen = !this.isMenuOpen;
-  }
-  onToolbarMenuToggle() {
-    if (!this.showarrow) {
-      this.flexchange.emit(false);
-    } else {
-      this.flexchange.emit(true);
-    }
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-  handleClick(selectedItem) {
-    if (!this.sidenav.opened) {
-      this.sidenav.toggle();
-    }
-    this.onToolbarMenuToggle();
-    if (this.mymedia) {
-      this.isMenuOpen = false; //Make the menu close in the first place
-      this.onToolbarMenuToggle();
-    }
-    if (this.userloggedin !== false) {
-      switch (selectedItem.name) {
-        case 'Partners':
-          this.router.navigate([{ outlets: { rightsidebar: ['map'] } }], { relativeTo: this.route });
-          break;
-        case 'Learning':
-          this.router.navigate([{ outlets: { rightsidebar: ['learning-page'] } }], { relativeTo: this.route });
-          break;
-        default:
-          break;
-      }
-    }else {
-      this.router.navigate([{ outlets: { rightsidebar: ['nomap'] } }], { relativeTo: this.route });
-    }
-  }
-
-  profileclick() {    
-    if (!this.sidenav.opened) {
-      this.sidenav.toggle();
-    }
-    if (this.mymedia) {
-      this.isMenuOpen = false;
-      this.onToolbarMenuToggle();
-    }
-    if (this.userloggedin !== false) {
-    this.router.navigate([{ outlets: { rightsidebar: ['profile-page'] } }], { relativeTo: this.route });
-    } else {
-      this.router.navigate([{ outlets: { rightsidebar: ['nomap'] } }], { relativeTo: this.route });
-    }
   }
 }
