@@ -154,5 +154,15 @@ ng generate module LearningPage --route learning-page --module app.module
    background-color: blue;
    color: white;
 }
+
+//Flex Learning- Identifying the overflow is the challenge
+Main Container-> column
+Flex Item-> has cross axis as width and the items default is 100% so we cannot set width,  so the overflow is changed by changing height not the width
+fxFlex will split coloumn
+
+Main Container-> Row
+Flex Item-> has cross axis as Height and the items default is 100% so we cannot set height, so the overflow is changed by changing width not the height
+fxFlex will split row 
+
 -->
 <router-outlet></router-outlet>

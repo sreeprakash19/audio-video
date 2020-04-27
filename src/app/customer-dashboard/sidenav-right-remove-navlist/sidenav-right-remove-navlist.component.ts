@@ -45,7 +45,6 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.imageStr);
   }
 
   onToolbarMenuToggle() {

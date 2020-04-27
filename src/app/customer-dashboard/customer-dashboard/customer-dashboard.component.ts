@@ -88,7 +88,7 @@ export class CustomerDashboardComponent implements OnInit {
     console.log('rx statesidenav from toolbar', statesidenav);
   }
   togglesidenav(statesidenav: boolean){    
-    console.log('clicked leftsidenav- false dont open sidenav', statesidenav );    
+    console.log('clicked leftsidenav', statesidenav );    
     this.arrow = statesidenav;
     switch(statesidenav){
       case true:
@@ -100,11 +100,14 @@ export class CustomerDashboardComponent implements OnInit {
         this.flexMobileSetting = '0 0 13.2%';
         break;
     }
+    console.log('Flex for mobile', this.flexMobileSetting );
   }
   getFlexOptions(){
+    console.log('caled PC flex',this.flexsetting );
     return  `${this.flexsetting}`;
   }
   getMobileFlexOptions(){
+    console.log('caled Mobile flex', this.flexMobileSetting);
     return  `${this.flexMobileSetting}`;
   }
   ngOnInit(): void {
