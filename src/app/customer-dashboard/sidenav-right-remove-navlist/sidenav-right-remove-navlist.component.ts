@@ -60,7 +60,7 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
       this.sidenav.toggle(); //leftsidenav open if closed
     }
     //in mobile
-    if (this.showarrow === true && this.mymedia){
+    if (this.showarrow === true && this.mymedia === true){
       this.flexchange.emit(false);
     }
     if (this.userloggedin !== false) {
@@ -75,7 +75,7 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
       this.sidenav.toggle();
     }
     //in mobile
-    if (this.showarrow === true && this.mymedia){
+    if (this.showarrow === true && this.mymedia === true){
       this.flexchange.emit(false);
     }
     if (this.userloggedin !== false) {

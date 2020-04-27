@@ -103,11 +103,9 @@ export class CustomerDashboardComponent implements OnInit {
     console.log('Flex for mobile', this.flexMobileSetting );
   }
   getFlexOptions(){
-    console.log('caled PC flex',this.flexsetting );
     return  `${this.flexsetting}`;
   }
   getMobileFlexOptions(){
-    console.log('caled Mobile flex', this.flexMobileSetting);
     return  `${this.flexMobileSetting}`;
   }
   ngOnInit(): void {

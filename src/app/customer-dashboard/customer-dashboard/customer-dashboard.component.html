@@ -8,7 +8,7 @@
     <mat-sidenav-content>
         <app-sidebar-details  [sidenav]="leftSidenav"></app-sidebar-details>
     </mat-sidenav-content>
-    <mat-sidenav #rightSidenav position="end" mode="side" opened  fixedInViewport="true" [fixedTopGap]="mobileQuery.matches ? 56 : 64"  [fxFlex]="mobileQuery.matches ? getMobileFlexOptions(): getFlexOptions()"  (mouseenter)="mobileQuery.matches ? null : togglesidenav(true)" (mouseleave)="mobileQuery.matches ? null: togglesidenav(false)">
+    <mat-sidenav #rightSidenav position="end" mode="over" opened  fixedInViewport="true" [fixedTopGap]="mobileQuery.matches ? 56 : 64"  [fxFlex]="mobileQuery.matches ? getMobileFlexOptions(): getFlexOptions()"  (mouseenter)="mobileQuery.matches ? null : togglesidenav(true)" (mouseleave)="mobileQuery.matches ? null: togglesidenav(false)">
        <app-sidenav-right-remove-navlist  [sidenav]="leftSidenav" (flexchange)="togglesidenav($event)" [showarrow]="arrow" [mymedia]= "mobileQuery.matches ? true : false"></app-sidenav-right-remove-navlist>
     </mat-sidenav> 
 </mat-sidenav-container>
