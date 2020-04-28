@@ -1,0 +1,39 @@
+[debug] [2020-04-28T06:50:38.263Z] ----------------------------------------------------------------------
+[debug] [2020-04-28T06:50:38.267Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\gmano\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2020-04-28T06:50:38.267Z] CLI Version:   8.2.0
+[debug] [2020-04-28T06:50:38.267Z] Platform:      win32
+[debug] [2020-04-28T06:50:38.267Z] Node Version:  v12.16.2
+[debug] [2020-04-28T06:50:38.269Z] Time:          Tue Apr 28 2020 12:20:38 GMT+0530 (India Standard Time)
+[debug] [2020-04-28T06:50:38.270Z] ----------------------------------------------------------------------
+[debug] [2020-04-28T06:50:38.270Z] 
+[debug] [2020-04-28T06:50:38.301Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-28T06:50:38.302Z] > authorizing via signed-in user
+[debug] [2020-04-28T06:50:38.303Z] [iam] checking project myconsent-fa8d1 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-04-28T06:50:38.308Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-04-28T06:50:38.308Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-04-28T06:50:38.710Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 28 Apr 2020 06:50:38 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-28T06:50:38.745Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/myconsent-fa8d1:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-04-28T06:50:40.733Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 28 Apr 2020 06:50:40 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1631","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-28T06:50:40.735Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/myconsent-fa8d1  
+ 
+[debug] [2020-04-28T06:50:41.201Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 28 Apr 2020 06:50:41 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[warn] !  functions: package.json indicates an outdated version of firebase-functions.
+Please upgrade using npm install --save firebase-functions@latest in your functions directory.
+[info] 
+[info] === Deploying to 'myconsent-fa8d1'...
+[info] 
+[info] i  deploying hosting
+[debug] [2020-04-28T06:51:01.341Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/myconsent-fa8d1/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-04-28T06:51:03.624Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 28 Apr 2020 06:51:03 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[myconsent-fa8d1]: beginning deploy...
+[info] i  hosting[myconsent-fa8d1]: found 42 files in dist\checkapp
+[debug] [2020-04-28T06:51:08.013Z] [hosting] hash cache [ZGlzdFxjaGVja2FwcA] stored for 42 files
+[debug] [2020-04-28T06:51:08.013Z] [hosting][hash queue][FINAL] {"max":4287,"min":0,"avg":697.6904761904761,"active":0,"complete":42,"success":42,"errored":0,"retried":0,"total":42,"elapsed":4343}
+[debug] [2020-04-28T06:51:08.014Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/myconsent-fa8d1/versions/119c134d321631d3:populateFiles  
+ <request body omitted>
+[debug] [2020-04-28T06:51:09.889Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 28 Apr 2020 06:51:09 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-28T06:51:09.918Z] [hosting][populate queue][FINAL] {"max":1882,"min":1882,"avg":1882,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1908}
+[debug] [2020-04-28T06:51:09.918Z] [hosting] uploads queued: 37

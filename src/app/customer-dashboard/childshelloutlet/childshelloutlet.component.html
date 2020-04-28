@@ -1,22 +1,40 @@
-<div fxLayout="row wrap" style="height: calc(100vh - 64px); padding: 5%;">
- 
-  <div fxFlex="grow" fxLayout="row" style="height: 20vh;border-color:green; border-radius:20px; border-style:double;">
-    <div fxFlex="2 0 30%"  fxFlexAlign="center"  style="text-align:end; font-size: 34px; border-color:blue; border-radius:20px; border-style:double;" >
-        MYCONSENT
+<div fxLayout="column" fxLayoutGap.lt-sm="20%"ngStyle.lt-sm="height:86vh;padding-top: 6%;" fxLayoutGap.gt-xs="10%" ngStyle.gt-xs="height:86vh;padding-top: 3%;" fxFlexFill >
+  <div ngStyle.lt-sm="width: 86vw;" ngStyle.gt-xs="width:45vw;" fxLayout="row" >  
+    <div fxFlex="10" ></div>
+    <div fxFlex="row" fxFlex> <!--height:20vh;-->
+      <mat-card fxFlex.lt-sm="75w" style="background-color: blue; height: 10vh; padding: 10%; ">
+        <div fxFlex="2 0 30%"  fxFlexAlign="center"  style="text-align:end; font-size: 34px; " >
+            MYCONSENT
+        </div>
+        <div fxFlex="1 0 auto" fxFlexAlign="center"  style="text-align:start;">
+            .com
+        </div>
+      </mat-card>
     </div>
-    <div fxFlex="1 0 auto" fxFlexAlign="center"  style="text-align:start; border-color:red; border-radius:10px; border-style:dotted;">
-        .com
-    </div>
+    <div fxFlex="10"></div>
   </div>
 
-  <div fxFlex="grow" fxLayout="row wrap" fxLayoutAlign="center space-around" style=" height: 30vh; border-color: lawngreen; border-style:dotted; border-radius:20px;">
-    <mat-label fxFlex="grow" style="text-align:center; font-size:18px; border-color:yellow; border-radius:25px; border-style:dotted;" >Returning Users/ Signup</mat-label>
-    <button fxFlex="none" style="border-color:orange; border-style:dotted;" mat-raised-button color="blue">Login (Google)</button>
+  <div ngStyle.lt-sm="width: 86vw;" ngStyle.gt-xs="width:45vw;" fxLayout="row" >
+    <div fxFlex="15"></div>
+    <mat-card fxFlex style="background-color:blue;height: 35vh; padding: 10%;">
+        <mat-card-content fxLayout="column" fxLayoutGap="25%"> 
+          <mat-label  style="text-align:center; font-size:20px;" >Returning Users/ Signup</mat-label>
+          <button mat-raised-button color="red">Login (Google)</button>
+        </mat-card-content>
+      </mat-card>
+    <div fxFlex="15" ></div>
   </div>
 
-  <div fxFlex="grow" fxLayout="row" fxLayoutAlign="space-around center" style="height: 20vh; border-color:green; border-style:double; border-radius:30px; " >
-    <button fxFlex="none" style="border-color:red; border-radius:10px; border-style:dotted;" mat-raised-button color="primary" >Open a Demo</button>
-    <button fxFlex="none" style=" border-color: lawngreen; border-style:dotted; border-radius:20px;" mat-raised-button color="warn">Preview App</button>
+  <div ngStyle.lt-sm="width: 86vw;" ngStyle.gt-xs="width:45vw;" fxLayout="row" >
+    <div fxFlex="5"></div>
+    <div fxFlex >
+      <mat-card  fxFlex.lt-sm="75w" ngStyle.gt-xs="background-color:blue ;height: 6.5vh;" ngStyle.lt-sm="background-color:blue ; height: 9vh;">
+        <mat-card-content fxLayoutAlign="space-between center  "  >
+          <button mat-raised-button color="primary" >Open a Demo</button>
+          <button mat-raised-button color="warn">Preview App</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="5" ></div>
   </div> 
-
 </div>
