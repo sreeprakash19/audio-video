@@ -1,12 +1,12 @@
 <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign.gt-xs="space-around center"><!-- flex container-->
-    <div fxFlex="40" fxLayout="column" fxLayoutGap="5%" style="margin: 2%; padding: 2%;border-color: red; border-style:dotted; border-radius:2px;">
-        <div fxLayout="row" fxLayoutAlign="center" style="border-color: green; border-style:solid; border-radius:2px;">
-            <button mat-raised-button color="blue">
+    <div fxFlex="40" fxLayout="column" fxLayoutGap="5%" style="margin: 3%; padding: 4.5%;">
+        <div fxLayout="row" fxLayoutAlign="center">
+            <button fxFlexFill mat-raised-button color="blue">
                 Profile Details
             </button>
         </div>
-        <div fxLayout="row" fxLayoutAlign.lt-sm="space-around center"  style="border-color: green; border-style:solid; border-radius:2px;">
-            <mat-card fxFlex.lt-sm="85%" style="background-color: blueviolet; width: 325px;">
+        <div fxLayout="row" fxLayoutAlign.lt-sm="space-around center" >
+            <mat-card fxFlex.lt-sm="85%" style="background-color: hotpink; width: 325px;">
                 <mat-card-header>
                     <div mat-card-avatar class="avatarclass"></div>
                     <mat-card-title>{{mylocaluser?.displayName}}'s Picture</mat-card-title>
@@ -22,21 +22,21 @@
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-raised-button color="warn" fxFlexOffset="0px" fxFlex="auto">Birthday </button>
-                    <mat-chip color="primary" fxFlexOffset="8px" fxFlex="auto">{{mylocaluser?.BirthDate}}</mat-chip>
+                    <mat-chip color="warn" fxFlexOffset="8px" fxFlex="auto">{{mylocaluser?.BirthDate}}</mat-chip>
                     <button mat-raised-button color="warn" fxFlexOffset="8px" fxFlex="auto">Anniversary</button>
-                    <mat-chip color="primary" fxFlexOffset="0px" fxFlex="auto">{{mylocaluser?.AnniversaryDate}}</mat-chip>
+                    <mat-chip color="warn" fxFlexOffset="0px" fxFlex="auto">{{mylocaluser?.AnniversaryDate}}</mat-chip>
                 </mat-card-actions>
             </mat-card>
         </div>
     </div>
-    <div fxFlex="40"  fxLayout="column"  fxLayoutGap="5%" style="margin: 2%; padding: 2%; border-color: red; border-style:dotted; border-radius:2px;">
-        <div fxLayout="row" fxLayoutAlign="center" style="border-color: green; border-style:solid; border-radius:2px;">
-            <button mat-raised-button color="blue">
+    <div fxFlex="40"  fxLayout="column"  fxLayoutGap="5%" style="margin: 3%; padding: 4.5%;">
+        <div fxLayout="row" fxLayoutAlign="center">
+            <button fxFlexFill mat-raised-button color="blue">
                 Update Details
             </button> 
         </div>
-        <div fxLayout="row" fxLayoutAlign.lt-sm="space-around center"  style="border-color: green; border-style:solid; border-radius:2px;">
-            <mat-card fxFlex.lt-sm="85%" style=" background-color: blueviolet;  width: 325px;">
+        <div fxLayout="row" fxLayoutAlign.lt-sm="space-around center">
+            <mat-card fxFlex.lt-sm="85%" style="background-color: hotpink; width: 325px;">
                 <mat-card-content fxLayout="column" fxLayoutGap="14%"  >
                         <button mat-raised-button color="primary" (click)="openDialogPersonal()">
                             Personal Details

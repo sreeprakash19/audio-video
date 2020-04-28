@@ -5,7 +5,7 @@
   }
   .mat-card {
     margin: 0 16px 16px 0;
-    width: 350px;
+    width: 310px;
   }
 
   img {
@@ -13,9 +13,4 @@
   }  
   .demo-card-blue {
     background-color: #b0becc;
-  
-    .mat-card-actions {
-        display: flex;
-        flex-direction: column;
-      }
   }
