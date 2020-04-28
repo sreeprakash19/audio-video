@@ -1,14 +1,9 @@
 mgl-map {
-    height: 50vh;
-    width: 80vw;
-  }
+  height: 60vh;
+  width: 40vw;
+}
 
-  
   .mat-form-field.mat-blue{
     color: blue;
   }
 
-  .mat-card {
-    margin: 0 16px 16px 0;
-    width: 320px;
-  }

@@ -1,7 +1,9 @@
-<div fxFlex="grow" ngStyle.gt-xs="margin-top:50px; height:100%;" ngStyle.lt-sm="margin-top:25px;">
-  <mat-card>
-    <mat-card-content>
-      <mgl-map
+<div fxFlex.lt-sm="grow"  fxLayoutAlign="center" style="padding: 5% "> <!--  ngClass.lt-sm="mobile" Class="desktop"style=" padding: 5% ;"-->
+  <div fxLayout="row"  fxFlex.lt-sm="88vw" fxFlex="45vw" style="background-color: green;"><!-- padding: 5% ; -->
+    <div fxFlex="5" style="border-style: dashed; border-color: blue;"></div>
+    <div fxLayout="row"  fxFlex>
+      <div fxFlex="10" style="border-style: dashed; border-color: red;"></div>
+      <mgl-map fxFlex
       [style]="'mapbox://styles/mapbox/dark-v9'"
       [zoom]="[13]"
       [center]="[mylng, mylat]"
@@ -51,9 +53,12 @@
         </mgl-layer>
 
       </mgl-map>
-    </mat-card-content>
-  </mat-card>
+      <div fxFlex="10" style="border-style: dashed; border-color: red;"></div>
+    </div>
+    <div fxFlex="5"  style="border-style: dashed; border-color: blue;" ></div>
+  </div>
 </div>
+
 
 
 <!--
