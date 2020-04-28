@@ -1,12 +1,12 @@
 <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign.gt-xs="space-around center"><!-- flex container-->
-    <div fxFlex="40" fxLayout="column" fxLayoutGap="5%" style="margin: 3%; padding: 4.5%;">
+    <div fxFlex="40" fxLayout="column" fxLayoutGap="5%" style="margin: 2%; padding: 3%;">
         <div fxLayout="row" fxLayoutAlign="center">
             <button fxFlexFill mat-raised-button color="blue">
                 Profile Details
             </button>
         </div>
         <div fxLayout="row" fxLayoutAlign.lt-sm="space-around center" >
-            <mat-card fxFlex.lt-sm="85%" style="background-color: hotpink; width: 325px;">
+            <mat-card fxLayout="column" fxFlex.lt-sm="88%" style="background-color: hotpink; width: 340px;">
                 <mat-card-header>
                     <div mat-card-avatar class="avatarclass"></div>
                     <mat-card-title>{{mylocaluser?.displayName}}'s Picture</mat-card-title>
@@ -29,7 +29,7 @@
             </mat-card>
         </div>
     </div>
-    <div fxFlex="40"  fxLayout="column"  fxLayoutGap="5%" style="margin: 3%; padding: 4.5%;">
+    <div fxFlex="40"  fxLayout="column"  fxLayoutGap="5%" style="margin: 2%; padding: 3%;">
         <div fxLayout="row" fxLayoutAlign="center">
             <button fxFlexFill mat-raised-button color="blue">
                 Update Details
