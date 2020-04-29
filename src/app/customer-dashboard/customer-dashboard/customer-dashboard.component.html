@@ -1,6 +1,6 @@
 
 <mat-sidenav-container hasBackdrop="false">     
-    <mat-sidenav #leftSidenav position="start" mode="over" fixedInViewport="true" [fixedTopGap]="mobileQuery.matches ? 56 : 64" fxFlex.lt-sm="90%" fxFlex.gt-xs="50vw">
+    <mat-sidenav #leftSidenav position="start" mode="over" fixedInViewport="true" [fixedTopGap]="mobileQuery.matches ? 56 : 64" fxFlex.lt-sm="90%" fxFlex.gt-xs="60vw">
         <div [@routeAnimations]="prepareRoute(outlet)">
             <router-outlet #outlet="outlet" name='leftsidebar'></router-outlet> <!--<span class="loader" *ngIf="loading"></span>-->
         </div>

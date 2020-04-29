@@ -1,5 +1,5 @@
 <div  ngStyle.lt-sm="height:calc(100vh - 100px); min-width: 87vw;" 
-      ngStyle.gt-sm="height:calc(100vh - 100px); min-width: 50vw;" 
+      ngStyle.gt-sm="min-height:calc(100vh - 100px); width: 50vw;" 
       fxLayout="column" 
       fxLayoutAlign="space-around center">
   <mat-card style="min-height: 10vh; background-color:blue;" > <!--flex-items align done by me-->
@@ -12,7 +12,7 @@
         </div>
       </mat-card-content>
   </mat-card>
-  <mat-card style="height: 30vh; min-width: 20vw;background-color:blue; "  ><!--column-->
+  <mat-card style="height: 30vh; min-width: 20vw;background-color:blue;"  ><!--column-->
       <mat-card-content fxFlex fxLayout="column" fxLayoutAlign="space-around center"> 
         <mat-label  style="text-align:center; font-size:20px;" >Returning Users/ Signup</mat-label>
         <button mat-raised-button color="red">Login (Google)</button>
