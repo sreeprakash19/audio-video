@@ -1,15 +1,16 @@
-
 <div  ngStyle.lt-sm="height:calc(100vh - 100px); min-width: 87vw;" 
       ngStyle.gt-sm="height:calc(100vh - 100px); min-width: 50vw;" 
       fxLayout="column" 
       fxLayoutAlign="space-around center">
-  <mat-card style="min-width: 15vw; background-color:blue;" > <!--flex-items align done by me-->
+  <mat-card style="min-height: 10vh; background-color:blue;" > <!--flex-items align done by me-->
+      <mat-card-content fxFlex  fxLayoutAlign="center center">
         <div fxFlex="2 0 30%"  style="text-align:end; font-size: 34px; " >
             MYCONSENT
         </div>
         <div fxFlex="1 0 auto" style="text-align:start;">
             .com
         </div>
+      </mat-card-content>
   </mat-card>
   <mat-card style="height: 30vh; min-width: 20vw;background-color:blue; "  ><!--column-->
       <mat-card-content fxFlex fxLayout="column" fxLayoutAlign="space-around center"> 
@@ -17,7 +18,7 @@
         <button mat-raised-button color="red">Login (Google)</button>
       </mat-card-content>
     </mat-card>  
-  <mat-card ngStyle.lt-sm="min-width: 80vw; background-color:blue;" ngStyle.gt-sm="min-width: 40vw; background-color:blue;"> <!--Row, increase height by padding-->
+  <mat-card ngStyle.lt-sm="min-height: 10vw; width: 80vw;background-color:blue;" ngStyle.gt-sm="min-height: 5vw; width: 40vw; background-color:blue;"> <!--Row, increase height by padding-->
     <mat-card-content fxFlex  fxLayoutAlign="space-around center">
       <button  mat-raised-button color="warn" >Open a Demo</button>
       <button  mat-raised-button color="warn">Preview App</button>
