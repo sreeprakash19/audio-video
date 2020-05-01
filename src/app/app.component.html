@@ -169,5 +169,75 @@ https://stackblitz.com/edit/angular-flex-layout-seed?file=app%2Fapp.component.ts
 //Row Container - Flex-item common ->  Height so  min-height is user controlled
 //fxLayoutGap will work for flex-items having fxFlex 
 //fxLayoutAlign will work for flex-container having fxFlex
+
+//Column for Desktop- Single Row column one over another
+<div fxLayout="column" ngStyle.lt-sm="height: calc(100vh - 56px);" ngStyle.gt-xs="height: calc(100vh - 64px);" >
+  <div fxFlex="50">
+    <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="50vw" fxLayout="row" style="background-color: red;"  > 
+      <div fxLayout="column" fxFlex="grow" style="background-color: blue;" fxLayoutAlign="space-around center" > 
+        <mat-card fxFlex="10vw">
+            Hello
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="50">
+    <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="50vw" fxLayout="row" style="background-color: red;"  > 
+        <div fxLayout="column" fxFlex="grow" style="background-color: green;" fxLayoutAlign="space-around center" > 
+          <mat-card fxFlex="10vw">
+              Hello1
+          </mat-card>
+        </div>
+    </div>
+  </div>
+</div>
+//For Mobile
+<div fxLayout="column" ngStyle.lt-sm="height: calc(100vh - 56px);" ngStyle.gt-xs="height: calc(100vh - 64px);" >
+  <div fxFlex="50">
+      <div fxFlex="87vw" fxLayout="row" style="background-color: red;"  > 
+        <div fxLayout="column" fxFlex="grow" style="background-color: blue;" fxLayoutAlign="space-around center" > 
+          <mat-card fxFlex="10vw">
+              Hello
+          </mat-card>
+          </div>
+      </div>
+  </div>
+  <div fxFlex="50">
+      <div fxFlex="87vw" fxLayout="row" style="background-color: red;"  > 
+          <div fxLayout="column" fxFlex="grow" style="background-color: green;" fxLayoutAlign="space-around center" > 
+          <mat-card fxFlex="10vw">
+              Hello1
+          </mat-card>
+          </div>
+      </div>
+  </div>
+</div>
+//ROw - side by side
+<div fxFlex.lt-sm="87vw" fxFlex.gt-xs="60vw" fxLayout="row" ngStyle.lt-sm="background-color: red;height: calc(100vh - 56px);" ngStyle.gt-xs="background-color: red;height: calc(100vh - 64px);">
+  <div fxLayout="column" fxFlex="50" style=" background-color: blue;" fxLayoutAlign="space-around center" > 
+    <mat-card fxFlex="10vw">
+        Hello
+    </mat-card>
+    </div>
+    <div fxLayout="column" fxFlex="50" style="background-color: green;" fxLayoutAlign="space-around center"> 
+        <mat-card fxFlex="10vw" >
+            Hello
+        </mat-card>
+    </div>
+</div>
+
+//For Mobile
+<div fxFlex="87vw" fxLayout="row" ngStyle.lt-sm="background-color: red; height: calc(100vh - 56px);" ngStyle.gt-xs="background-color: red; height: calc(100vh - 64px);" >
+  <div fxLayout="column" fxFlex="50" style="background-color: blue;" fxLayoutAlign="space-around center" > 
+    <mat-card fxFlex="10vw">
+        Hello
+    </mat-card>
+    </div>
+    <div fxLayout="column" fxFlex="50" style="background-color: green;" fxLayoutAlign="space-around center"> 
+        <mat-card fxFlex="10vw" >
+            Hello
+        </mat-card>
+    </div>
+</div>
 -->
 <router-outlet></router-outlet>
