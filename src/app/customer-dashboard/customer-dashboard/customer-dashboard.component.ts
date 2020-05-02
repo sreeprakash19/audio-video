@@ -55,7 +55,7 @@ export class CustomerDashboardComponent implements OnInit {
   @ViewChild('rightSidenav', { static: true }) public Sidenav: MatSidenav;
   @ViewChild('leftSidenav', { static: true }) public LeftSidenav: MatSidenav;
   
-  flexsetting = '0 0 4%';
+  flexsetting = '0 0 3.8%';
   flexMobileSetting =  '0 0 13.2%';
 
   mylat = 37.75;
@@ -96,7 +96,7 @@ export class CustomerDashboardComponent implements OnInit {
         this.flexMobileSetting = '0 0 30%';
         break;
       case false:
-        this.flexsetting = '0 0 4%';//desktop
+        this.flexsetting = '0 0 3.8%';//desktop
         this.flexMobileSetting = '0 0 13.2%';
         break;
     }

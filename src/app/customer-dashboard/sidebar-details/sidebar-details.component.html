@@ -1,17 +1,28 @@
-<div  fxLayout="row wrap" style="padding: 80px;">
-    <div fxFlex="grow">
-        <app-toolbar-add-input (menuchange)="togglesidenav($event)" ></app-toolbar-add-input>
-    </div>    
-    <div fxFlex="grow"></div>
-    <div fxFlex="grow"></div>
-    <div fxFlex="grow"></div>
-    <button mat-raised-button color="warn" fxFlex="none" fxFlexOffset="10px">
-        Your Location is: 
-    </button>
+<!--<div  fxLayout="column" ngStyle.lt-sm="min-height: (100vh - 56px);" ngStyle.gt-xs="min-height: (100vh - 64px);">
+    <div fxLayout="row">
 
-    <div fxFlex="grow"></div>
+            
+    
+           
 
-    <div fxFlex="grow" style="height: 10px;"></div>
+    </div>
+    
+</div>-->
 
-    <p fxFlex="grow"  *ngFor="let content of fillerContent" >{{content}}</p>
-</div>
+<div fxLayout="column" ngStyle.lt-sm="height:100vh;" ngStyle.gt-xs="height:100vh;" >
+    <div fxFlex="64px">
+      <div fxFlex.lt-sm="100vw" fxFlex.gt-xs="100vw" fxLayout="row" style="background-color: red;"  > 
+        <div fxLayout="column" style="background-color: blue;"  >        
+            <app-toolbar-add-input (menuchange)="togglesidenav($event)" ></app-toolbar-add-input>  
+        </div>
+      </div>
+    </div>
+    <div fxFlex="calc(100vh-64px)">
+      <div fxFlex.lt-sm="100vw" fxFlex.gt-xs="100vw" fxLayout="row" style="background-color: red;"  > 
+          <div fxLayout="column" style="background-color: green;"  > 
+            
+            <p fxFlex *ngFor="let content of fillerContent" >{{content}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
