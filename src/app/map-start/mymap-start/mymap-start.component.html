@@ -1,7 +1,177 @@
-<div fxFlex.lt-sm="grow"  fxLayoutAlign="center" style="padding:4% "> <!--  ngClass.lt-sm="mobile" Class="desktop"style=" padding: 5% ;"-->
-  <div fxLayout="row"  fxFlex.lt-sm="87vw" fxFlex="45vw" style="background-color: green;"><!-- padding: 5% ; -->
+<!--<div fxLayout="column" ngStyle.lt-sm="height: calc(100vh - 56px);" ngStyle.gt-xs="height: calc(100vh - 64px);" >
+  <div fxFlex>
+    <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="50vw" fxLayout="row" > 
+      <div fxLayout="column" fxFlex="grow" fxLayoutAlign="center center" > 
+        <mat-card  style="height:10vh; background-color:orange;"  > 
+          <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="center center" >
+            <button   style="text-align:end; font-size: 34px;" >
+                Choose your Partners
+            </button>
+            <button  style="text-align:start;">
+                <mat-icon> wc</mat-icon>
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>      
+    </div>
+  </div>
+  <div fxFlex>
+    <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="50vw" fxLayout="row"  > 
+      <div fxLayout="column" fxFlex="grow" fxLayoutAlign="center center" > 
+        <mat-card style="height: 25vh; background-color:blue;" >
+          <mat-card-content fxFlex fxLayout="column" fxLayoutAlign="space-between  center">
+            <mat-label style="text-align:center; font-size:20px;" >Returning Users/ Signup</mat-label>
+            <mgl-map fxFlex
+            [style]="'mapbox://styles/mapbox/dark-v9'"
+            [zoom]="[13]"
+            [center]="[mylng, mylat]"
+            [cursorStyle]="cursorStyle"
+            (load)="map = $event"
+            (click)="onClick(map = $event)"
+            >
+            <mgl-control mglNavigation position="bottom-left"></mgl-control>
+            <mgl-control mglGeolocate position="bottom-left"></mgl-control>
+      
+            <mgl-marker [lngLat]="[mylng, mylat]" [draggable]="false"></mgl-marker>
+              <mgl-control
+              position="top-right">
+              <form [formGroup]="LocationForm" (ngSubmit)="Searchdb(LocationForm )">
+                <mat-form-field color="blue">
+                  <input matInput     placeholder="Enter Pincode" value="629004">
+                </mat-form-field>
+                <button
+                mat-fab
+                color="primary"
+                type="submit" [disabled]="!LocationForm.valid"
+                >
+                Search
+                </button>
+              </form>
+      
+              </mgl-control>
+              <mgl-geojson-source
+                id="symbols-source"
+              >
+                <mgl-feature
+                  *ngFor="let geometry of geometries"
+                  [geometry]="geometry"
+                ></mgl-feature>
+              </mgl-geojson-source>
+              <mgl-layer
+                id="symbols"
+                type="symbol"
+                source="symbols-source"
+                [layout]="{
+                  'icon-image': 'rocket-15'
+                }"
+      
+                (mouseEnter)="cursorStyle = 'pointer'"
+                (mouseLeave)="cursorStyle = ''"
+              >
+              </mgl-layer>
+      
+            </mgl-map>
+          </mat-card-content>
+        </mat-card>  
+      </div>
+    </div>
+  </div>
+  <div fxFlex>
+    <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="50vw" fxLayout="row"  > 
+      <div fxLayout="column" fxFlex="grow" fxLayoutAlign="center center" > 
+        <mat-card  ngStyle.lt-sm="height:10vh; min-width:80vw;  background-color:orange;"  ngStyle.gt-xs="height:10vh; min-width:40vw;  background-color:orange;" > 
+          <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="space-between center" >
+            <button  mat-raised-button color="warn" >Open a Demo</button>
+            <button  mat-raised-button color="warn">Preview App</button>
+          </mat-card-content>
+        </mat-card>
+      </div>      
+    </div>
+  </div>
+</div>-->
+<div fxFlex.lt-sm="87vw" fxFlex.gt-xs="60vw" fxLayout="row" ngStyle.lt-sm="background-color: red;height: calc(100vh - 56px);" ngStyle.gt-xs="background-color: red;height: calc(100vh - 64px);">
+  <div fxLayout="column" fxFlex="grow" style=" background-color: blue;"  > 
+      <div fxFlex="25"  >
+        <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="60vw" fxLayout="row">
+          <div fxLayout="column" fxFlex="grow" fxLayoutAlign="center center" > 
+            <mat-card  ngStyle.lt-sm="height:10vh; min-width:80vw;  background-color:orange;"  ngStyle.gt-xs="height:10vh; min-width:40vw;  background-color:orange;" > 
+              <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="center center" >
+                <button  mat-raised-button color="warn"> Add Partners</button>
+              </mat-card-content>
+            </mat-card>
+          </div>  
+        </div>
+      </div>
+      <mgl-map fxFlexAlign="center" fxFlex="50"
+      [style]="'mapbox://styles/mapbox/dark-v9'"
+      [zoom]="[13]"
+      [center]="[mylng, mylat]"
+      [cursorStyle]="cursorStyle"
+      (load)="map = $event"
+      (click)="onClick(map = $event)"
+      >
+      <mgl-control mglNavigation position="bottom-left"></mgl-control>
+      <mgl-control mglGeolocate position="bottom-left"></mgl-control>
+
+      <mgl-marker [lngLat]="[mylng, mylat]" [draggable]="false"></mgl-marker>
+        <mgl-control
+        position="top-right">
+        <form [formGroup]="LocationForm" (ngSubmit)="Searchdb(LocationForm )">
+          <mat-form-field color="blue">
+            <input matInput     placeholder="Enter Pincode" value="629004">
+          </mat-form-field>
+          <button
+          mat-fab
+          color="primary"
+          type="submit" [disabled]="!LocationForm.valid"
+          >
+          Search
+          </button>
+        </form>
+
+        </mgl-control>
+        <mgl-geojson-source
+          id="symbols-source"
+        >
+          <mgl-feature
+            *ngFor="let geometry of geometries"
+            [geometry]="geometry"
+          ></mgl-feature>
+        </mgl-geojson-source>
+        <mgl-layer
+          id="symbols"
+          type="symbol"
+          source="symbols-source"
+          [layout]="{
+            'icon-image': 'rocket-15'
+          }"
+
+          (mouseEnter)="cursorStyle = 'pointer'"
+          (mouseLeave)="cursorStyle = ''"
+        >
+        </mgl-layer>
+
+      </mgl-map>
+      <div fxFlex="25"  >
+
+        <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="60vw" fxLayout="row">
+          <div fxLayout="column" fxFlex="grow" fxLayoutAlign="center center" > 
+            <mat-card  ngStyle.lt-sm="height:10vh; min-width:80vw;  background-color:orange;"  ngStyle.gt-xs="height:10vh; min-width:40vw;  background-color:orange;" > 
+              <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="space-between center" >
+                <button  mat-raised-button color="warn"> Ok</button>
+                <button  mat-raised-button color="warn">Cancel</button>
+              </mat-card-content>
+            </mat-card>
+          </div>  
+        </div>
+      </div>
+    </div>
+</div>
+<!--
+<div fxLayoutAlign="center" style="padding:4% "> 
+  <div fxLayout="row"  fxFlex.lt-sm="87vw" fxFlex="45vw" style="background-color: green;">
     <div fxFlex="5" style="border-style: dashed; border-color: blue;"></div>
-    <div fxLayout="row"  fxFlex>
+    <div fxLayout="row"  fxFlex >
       <div fxFlex="5" style="border-style: dashed; border-color: red;"></div>
       <mgl-map fxFlex
       [style]="'mapbox://styles/mapbox/dark-v9'"
@@ -57,8 +227,130 @@
     </div>
     <div fxFlex="5"  style="border-style: dashed; border-color: blue;" ></div>
   </div>
+</div>-->
+
+
+
+<!--
+
+<div fxFlex="grow" ngStyle.gt-xs="margin-top:50px; height: 10vh;"
+ngStyle.lt-sm="margin-top:8px; height: 40vh;">
+<div fxFlex="grow">hello</div>
+<mgl-map
+[style]="'mapbox://styles/mapbox/dark-v9'"
+[zoom]="[13]"
+[center]="[mylng, mylat]"
+[cursorStyle]="cursorStyle"
+(load)="map = $event"
+(click)="onClick(map = $event)"
+>
+<mgl-control mglNavigation position="bottom-left"></mgl-control>
+<mgl-control mglGeolocate position="bottom-left"></mgl-control>
+
+<mgl-marker [lngLat]="[mylng, mylat]" [draggable]="false"></mgl-marker>
+<mgl-control
+position="top-right">
+<form [formGroup]="LocationForm" (ngSubmit)="Searchdb(LocationForm )">
+  <mat-form-field color="blue">
+    <input matInput     placeholder="Enter Pincode" value="629004">
+  </mat-form-field>
+  <button
+  mat-fab
+  color="primary"
+  type="submit" [disabled]="!LocationForm.valid"
+   >
+  Search
+  </button>
+</form>
+
+</mgl-control>
+<mgl-geojson-source
+  id="symbols-source"
+>
+  <mgl-feature
+    *ngFor="let geometry of geometries"
+    [geometry]="geometry"
+  ></mgl-feature>
+</mgl-geojson-source>
+<mgl-layer
+  id="symbols"
+  type="symbol"
+  source="symbols-source"
+  [layout]="{
+    'icon-image': 'rocket-15'
+  }"
+
+  (mouseEnter)="cursorStyle = 'pointer'"
+  (mouseLeave)="cursorStyle = ''"
+>
+</mgl-layer>
+
+</mgl-map>
 </div>
 
+-->
+
+<!--fxLayout="row wrap" cause the screen to go full
+fxFlex="auto & grow & none in first line behaviour is the same-->
+<!--
+<mat-card style="height: 40vh; width: 40vw;" >
+        <mat-card-header> Add Partners</mat-card-header>
+        <mat-card-content>
+          <mgl-map fxFlex
+          [style]="'mapbox://styles/mapbox/dark-v9'"
+          [zoom]="[13]"
+          [center]="[mylng, mylat]"
+          [cursorStyle]="cursorStyle"
+          (load)="map = $event"
+          (click)="onClick(map = $event)"
+          >
+          <mgl-control mglNavigation position="bottom-left"></mgl-control>
+          <mgl-control mglGeolocate position="bottom-left"></mgl-control>
+    
+          <mgl-marker [lngLat]="[mylng, mylat]" [draggable]="false"></mgl-marker>
+            <mgl-control
+            position="top-right">
+            <form [formGroup]="LocationForm" (ngSubmit)="Searchdb(LocationForm )">
+              <mat-form-field color="blue">
+                <input matInput     placeholder="Enter Pincode" value="629004">
+              </mat-form-field>
+              <button
+              mat-fab
+              color="primary"
+              type="submit" [disabled]="!LocationForm.valid"
+              >
+              Search
+              </button>
+            </form>
+    
+            </mgl-control>
+            <mgl-geojson-source
+              id="symbols-source"
+            >
+              <mgl-feature
+                *ngFor="let geometry of geometries"
+                [geometry]="geometry"
+              ></mgl-feature>
+            </mgl-geojson-source>
+            <mgl-layer
+              id="symbols"
+              type="symbol"
+              source="symbols-source"
+              [layout]="{
+                'icon-image': 'rocket-15'
+              }"
+    
+              (mouseEnter)="cursorStyle = 'pointer'"
+              (mouseLeave)="cursorStyle = ''"
+            >
+            </mgl-layer>
+    
+          </mgl-map>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button>OK</button>
+        </mat-card-actions>
+      </mat-card>-->
 
 
 <!--
