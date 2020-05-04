@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 
 
+
 @Component({
   selector: 'app-childshelloutlet',
   templateUrl: './childshelloutlet.component.html',
@@ -8,13 +9,15 @@ import { Component, OnInit} from '@angular/core';
 })
 export class ChildshelloutletComponent implements OnInit {
 
+  constructor(){
 
-  constructor() {
   }
+
   ngOnInit(): void {
-     
 
   }
+  
+
 }
 
 

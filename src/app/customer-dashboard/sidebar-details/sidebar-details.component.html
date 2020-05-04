@@ -9,20 +9,10 @@
     
 </div>-->
 
-<div fxLayout="column" ngStyle.lt-sm="height:100vh;" ngStyle.gt-xs="height:100vh;" >
-    <div fxFlex="64px">
-      <div fxFlex.lt-sm="100vw" fxFlex.gt-xs="100vw" fxLayout="row" style="background-color: red;"  > 
-        <div fxLayout="column" style="background-color: blue;"  >        
-            <app-toolbar-add-input (menuchange)="togglesidenav($event)" ></app-toolbar-add-input>  
-        </div>
+<div fxLayout="column"  >
+  <div fxFlex.lt-sm="86.7vw" fxFlex.gt-xs="96.2vw" fxLayout="row"  > 
+      <div fxLayout="column" ngStyle.lt-sm="background-color: green; margin-top: 56px; padding: 4%; height:100vh;" ngStyle.gt-xs="background-color: green;  margin-top: 64px; padding: 4%; height:100vh;" > 
+        <p fxFlexOffset="3%" fxFlex *ngFor="let content of fillerContent" >{{content}}</p>
       </div>
-    </div>
-    <div fxFlex="calc(100vh-64px)">
-      <div fxFlex.lt-sm="100vw" fxFlex.gt-xs="100vw" fxLayout="row" style="background-color: red;"  > 
-          <div fxLayout="column" style="background-color: green;"  > 
-            
-            <p fxFlex *ngFor="let content of fillerContent" >{{content}}</p>
-          </div>
-      </div>
-    </div>
   </div>
+</div>

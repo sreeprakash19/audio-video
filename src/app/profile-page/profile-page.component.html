@@ -11,44 +11,46 @@
 
 
 
-<div fxLayout.lt-sm="column" fxLayout.gt-xs="column wrap" fxFlex.gt-xs="60vw" ngStyle.lt-sm="height: calc(190vh - 56px);" ngStyle.gt-xs="height: calc(100vh - 64px);" >
-    <div fxFlex.lt-sm="50" fxFlex.gt-xs="none">
-      <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="30vw" fxLayout="row" style="background-color: red;"  > 
-        <div fxLayout="column" fxFlex="grow" style="background-color: blue; " fxLayoutGap.lt-sm="50px"   fxLayoutGap.gt-xs="20px" ngStyle.gt-xs="height: calc(100vh - 64px);" > 
-            <div fxFlexOffset.lt-sm="1%" ></div>
-            <button fxFlexAlign="center" mat-raised-button color="blue" ngStyle.lt-sm="width: 72vw;"> Profile Details</button>
-            <mat-card fxFlexOffset.gt-xs="5.6%" fxFlexAlign="center"  ngStyle.gt-xs="background-color: green; width: 17vw; height: 65vh;" ngStyle.lt-sm="background-color: green; height: 58vh; width: 65vw;" >
-                <mat-card-header>
-                    <div mat-card-avatar class="avatarclass"></div>
-                    <mat-card-title>{{mylocaluser?.displayName}}'s Picture</mat-card-title>
-                    <mat-card-subtitle>{{mylocaluser?.Gender}} </mat-card-subtitle>
-                    <mat-card-subtitle *ngIf="mylocaluser?.phoneNumber !== null">Ph:{{mylocaluser?.phoneNumber}}</mat-card-subtitle>
-                    <mat-card-subtitle *ngIf="mylocaluser?.phoneNumber === null">Ph: Add </mat-card-subtitle>
-                </mat-card-header>
-                <mat-spinner *ngIf="showspinner"></mat-spinner>
-                <img mat-card-xl-image src="{{mylocaluser?.customphotoURL}}" (load)="dosomething()"
-                    alt="Photo of a User">
-                <mat-card-content ngStyle.lt-sm="height: 10vh;">
-                    <br>
-                    Add DisplayName!{{mylocaluser?.customdisplayName}}                    
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-raised-button color="warn" fxFlexOffset="0px" fxFlex="auto">Birthday </button>
-                    <mat-chip color="warn" fxFlexOffset="8px" fxFlex="auto">{{mylocaluser?.BirthDate}}</mat-chip>
-                    <button mat-raised-button color="warn" fxFlexOffset="8px" fxFlex="auto">Anniversary</button>
-                    <mat-chip color="warn" fxFlexOffset="0px" fxFlex="auto">{{mylocaluser?.AnniversaryDate}}</mat-chip>
-                </mat-card-actions>
-            </mat-card>
-        </div>
+<div fxFlex.gt-xs="60vw" fxLayout.lt-sm="column" fxLayout.gt-xs="row" ngStyle.lt-sm="height: calc(200vh - 112px); background-color: yellow;"   ngStyle.gt-xs="height: calc(100vh - 64px);" >
+    <div fxFlex.lt-sm="50" fxFlex.gt-xs="none" ngStyle.lt-sm="min-height:100vh;">
+      <div fxFlex.lt-sm="87vw" fxLayout="row" fxFlex.gt-xs="30vw"  style="background-color: red;"  > 
+            <div fxLayout="column" ngStyle.lt-sm="min-width:87vw;background-color: lightblue;"  fxLayoutGap.lt-sm="50px"   fxLayoutGap.gt-xs="20px" ngStyle.gt-xs="min-width:30vw ;height: calc(100vh - 64px);background-color: blue;">
+                <div fxFlexOffset.lt-sm="1%" ></div>
+                <button fxFlexAlign="center" mat-raised-button color="blue" ngStyle.lt-sm="width: 72vw;"> Profile Details</button>
+                <mat-card fxFlexOffset.gt-xs="5.6%" fxFlexAlign="center"  ngStyle.gt-xs="background-color: green; width: 17vw; height: 65vh;" ngStyle.lt-sm="background-color: green; height: 58vh; width: 65vw;" >
+                    <mat-card-header>
+                        <div mat-card-avatar class="avatarclass"></div>
+                        <mat-card-title>{{mylocaluser?.displayName}}'s Picture</mat-card-title>
+                        <mat-card-subtitle>{{mylocaluser?.Gender}} </mat-card-subtitle>
+                        <mat-card-subtitle *ngIf="mylocaluser?.phoneNumber !== null">Ph:{{mylocaluser?.phoneNumber}}</mat-card-subtitle>
+                        <mat-card-subtitle *ngIf="mylocaluser?.phoneNumber === null">Ph: Add </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-spinner *ngIf="showspinner"></mat-spinner>
+                    <img mat-card-xl-image src="{{mylocaluser?.customphotoURL}}" (load)="dosomething()"
+                        alt="Photo of a User">
+                    <mat-card-content ngStyle.lt-sm="height: 10vh;">
+                        <br>
+                        Add DisplayName!{{mylocaluser?.customdisplayName}}                    
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="warn" fxFlexOffset="0px" fxFlex="auto">Birthday </button>
+                        <mat-chip color="warn" fxFlexOffset="8px" fxFlex="auto">{{mylocaluser?.BirthDate}}</mat-chip>
+                        <button mat-raised-button color="warn" fxFlexOffset="8px" fxFlex="auto">Anniversary</button>
+                        <mat-chip color="warn" fxFlexOffset="0px" fxFlex="auto">{{mylocaluser?.AnniversaryDate}}</mat-chip>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+
       </div>
     </div>
-    <div fxFlex.lt-sm="50"  fxFlex.gt-xs="none">
-      <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="30vw" fxLayout="row" style="background-color: red;"  > 
-          <div fxLayout="column" fxFlex="grow" style="background-color: blue;" fxLayoutGap.lt-sm="50px"   fxLayoutGap.gt-xs="20px" ngStyle.gt-xs="height: calc(100vh - 64px);" > 
+    <div fxFlex.lt-sm="50"  fxFlex.gt-xs="none" ngStyle.lt-sm="min-height:calc(100vh - 112px );">
+      <div fxFlex.lt-sm="87vw" fxLayout="row" fxFlex.gt-xs="30vw"  style="background-color: red;"  > 
+
+          <div fxLayout="column" ngStyle.lt-sm="min-width:87vw;background-color: blue;" fxLayoutGap.lt-sm="50px"   fxLayoutGap.gt-xs="20px" ngStyle.gt-xs="min-width:30vw ;height: calc(100vh - 64px);background-color: blue;" > 
             <div fxFlexOffset.lt-sm="1%" ></div>
             <button fxFlexAlign="center"  mat-raised-button color="blue" ngStyle.lt-sm="width: 72vw;">Update Details</button> 
-            <mat-card fxFlexOffset.gt-xs="5.6%"  fxFlexAlign="center" ngStyle.gt-xs="background-color: green; width: 17vw; height: 65vh" ngStyle.lt-sm="background-color: green; width: 65vw;height: 65vh" >
-                <mat-card-content fxLayout="column" fxLayoutAlign.gt-xs="space-around center" fxLayoutAlign.lt-sm="space-evenly center" style="height: 68vh;">
+            <mat-card fxFlexOffset.gt-xs="5.6%"  fxFlexAlign="center" ngStyle.gt-xs="background-color: green; width: 17vw; height: 65vh" ngStyle.lt-sm="background-color: green; height: 58vh;  width: 65vw;" >
+                <mat-card-content fxLayout="column" fxLayoutAlign.gt-xs="space-around center" fxLayoutAlign.lt-sm="space-between center" ngStyle.lt-sm="height: 58vh;" ngStyle.gt-xs="height: 65vh;">
                    <button mat-raised-button color="primary" (click)="openDialogPersonal()">
                         Personal Details
                     </button>
@@ -71,6 +73,7 @@
                 </mat-card-content>
             </mat-card>
           </div>
+
       </div>
     </div>
   </div>

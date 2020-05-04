@@ -2,3 +2,12 @@
   background-color: lightcoral;
   color: white;
 }
+mgl-map {
+  height: 50vh; 
+  width: 50vw;
+}
+
+  .mat-form-field.mat-blue{
+    color: blue;
+  }
+
