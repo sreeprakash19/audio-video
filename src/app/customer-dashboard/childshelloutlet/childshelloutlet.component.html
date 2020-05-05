@@ -1,13 +1,40 @@
 <!--
   Design:
   we need single column split equally : with single Row : inside column is having having row and column layout.
+  if column has width then dont include row width for row inside column but incule row height
+  <div  fxFlex.lt-sm="calc(100vh - 56px)" fxFlex.gt-xs="calc(100vh - 64px)" fxLayout="column" ngStyle.lt-sm="width: 87vw;background-color:red;" ngStyle.gt-xs="width:60vw;background-color:blue; " >
+  <div  fxLayout="row" ngStyle.lt-sm="height: calc(100vh - 56px);background-color:blue;" ngStyle.gt-xs="height: calc(100vh - 64px);background-color:yellow; " fxLayoutAlign="center center">
+ 
+  if row has height then don't inclue row height for column inside row but incule row width
 -->
-<div fxLayout="column" ngStyle.lt-sm="height: calc(100vh - 56px);" ngStyle.gt-xs="height: calc(100vh - 64px);" >
-  <div fxFlex>
-    <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="50vw" fxLayout="row" > 
-      <div fxLayout="column" fxFlex="grow" fxLayoutAlign="center center" > 
-        <mat-card  style="height:10vh; background-color:orange;"  > 
-          <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="center center" >
+
+<div fxFlex.gt-xs="60vw" fxLayout.lt-sm="column" fxLayout.gt-xs="row" ngStyle.lt-sm="height: calc(100vh - 112px); background-color: yellow;"   ngStyle.gt-xs="height: calc(100vh - 64px);" >
+<div fxFlex.lt-sm="100"  fxFlex.gt-xs="none" ngStyle.lt-sm="min-height:calc(100vh - 112px );">
+    <div fxFlex.lt-sm="87vw" fxLayout="row" fxFlex.gt-xs="60vw"  style="background-color: red;"  > 
+        <div fxFlex fxLayout="column" ngStyle.lt-sm="min-width:87vw;background-color: blue;" fxLayoutAlign="center center" ngStyle.gt-xs="min-width:30vw ;height: calc(100vh - 64px);background-color: blue;" > 
+          <mat-card ngStyle.lt-sm="height: 58vh;  width: 70vw; background-color:orange;"  > 
+            <mat-card-content fxFlex fxLayoutAlign="center center" >
+              <button   style="text-align:end; font-size: 34px;" >
+                  MYCONSENT
+              </button>
+              <button  style="text-align:start;">
+                  .com
+              </button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<!--
+<div fxFlex.gt-xs="60vw" fxLayout="column"  ngStyle.gt-xs="height: calc(100vh - 64px);" >
+  <div fxFlex="none" ngStyle.gt-xs= "min-width: 60vw;">
+    <div fxFlex.lt-sm="87vw" fxLayout="row" ngStyle.lt-sm="height: calc(100vh - 112px);"> 
+      <div fxLayout="column" fxFlex ngStyle.lt-sm="min-width: 87vw; height: calc(100vh - 56px);" ngStyle.gt-xs="width: 60vw; height: calc(100vh - 64px);" fxLayoutAlign="space-around center" > 
+        <mat-card  style="background-color:orange;"  > 
+          <mat-card-content fxFlex fxLayoutAlign="center center" >
             <button   style="text-align:end; font-size: 34px;" >
                 MYCONSENT
             </button>
@@ -16,25 +43,13 @@
             </button>
           </mat-card-content>
         </mat-card>
-      </div>      
-    </div>
-  </div>
-  <div fxFlex>
-    <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="50vw" fxLayout="row"  > 
-      <div fxLayout="column" fxFlex="grow" fxLayoutAlign="center center" > 
-        <mat-card style="height: 25vh; background-color:blue;" >
+        <mat-card style="min-height: 25vh; background-color:blue;" >
           <mat-card-content fxFlex fxLayout="column" fxLayoutAlign="space-between  center">
             <mat-label style="text-align:center; font-size:20px;" >Returning Users/ Signup</mat-label>
             <button  mat-raised-button color="red">Login (Google)</button>
           </mat-card-content>
         </mat-card>  
-      </div>
-    </div>
-  </div>
-  <div fxFlex>
-    <div fxFlex.lt-sm="87vw" fxFlex.gt-xs="50vw" fxLayout="row"  > 
-      <div fxLayout="column" fxFlex="grow" fxLayoutAlign="center center" > 
-        <mat-card  ngStyle.lt-sm="height:10vh; min-width:80vw;  background-color:orange;"  ngStyle.gt-xs="height:10vh; min-width:40vw;  background-color:orange;" > 
+        <mat-card  ngStyle.lt-sm="width:80vw;  background-color:orange;"  ngStyle.gt-xs="width:40vw;  background-color:orange;" > 
           <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="space-between center" >
             <button  mat-raised-button color="warn" >Open a Demo</button>
             <button  mat-raised-button color="warn">Preview App</button>
@@ -44,3 +59,5 @@
     </div>
   </div>
 </div>
+-->
+
