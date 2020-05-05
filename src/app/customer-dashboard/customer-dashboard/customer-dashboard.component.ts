@@ -102,6 +102,17 @@ export class CustomerDashboardComponent implements OnInit {
     }
     console.log('Flex for mobile', this.flexMobileSetting );
   }
+  menutogglesidenav(){
+    this.LeftSidenav.toggle();
+    switch(this.arrow){
+      case true:
+        this.arrow = !this.arrow;
+        this.flexMobileSetting = '0 0 13.2%';
+        break;
+      case false:
+        break;
+    }
+  }
   getFlexOptions(){
     return  `${this.flexsetting}`;
   }
