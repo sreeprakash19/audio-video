@@ -8,9 +8,6 @@
   Take Every single row
 
   Split the single row with fxFlex="basis" to create single column layout(fxFlex="grow") or many column layout-->
-
-
-
 <div fxFlex.gt-xs="60vw" fxLayout.lt-sm="column" fxLayout.gt-xs="row" ngStyle.lt-sm="height: calc(200vh - 112px); background-color: yellow;"   ngStyle.gt-xs="height: calc(100vh - 64px);" >
     <div fxFlex.lt-sm="50" fxFlex.gt-xs="none" ngStyle.lt-sm="min-height:100vh;">
       <div fxFlex.lt-sm="87vw" fxLayout="row" fxFlex.gt-xs="30vw"  style="background-color: red;"  > 
@@ -53,7 +50,7 @@
                    <button mat-raised-button color="primary" (click)="openDialogPersonal()">
                         Personal Details
                     </button>
-                    <button mat-raised-button color="primary" (click)="openDialogPicture()">
+                    <button mat-raised-button color="primary" (click)="openDialogPictures()">
                         Picture
                     </button>
                     <button mat-raised-button color="primary" (click)="openDialogDates()">

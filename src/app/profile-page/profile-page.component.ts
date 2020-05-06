@@ -38,9 +38,19 @@ export class ProfilePageComponent implements OnInit {
   }
   openDialogPersonal(){
   }
-  
-  openDialogPicture(){
+   
+ openDialogPictures(){
+  const dialogRef = this.dialog.open(DialogPictures, {
+      data: {name: this.name}
+    });
+    console.log('video open', dialogRef);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
   }
+
   
   openDialogDates(){
   }
@@ -48,12 +58,13 @@ export class ProfilePageComponent implements OnInit {
   openDialogFamily(){
   }
   openDialogGreeting(){
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-        width: '250px',
-        height:'250px',
+    const dialogRef = this.dialog.open(DialogAudio, {
+        width: '350px',
+        height:'450px',
         data: {name: this.name}
+       
       });
-  
+      console.log('audio open', dialogRef);
       dialogRef.afterClosed().subscribe(result => 
 {
        console.log('The dialog was closed');
@@ -89,7 +100,7 @@ export class ProfilePageComponent implements OnInit {
   `
 
 })
-export class DialogOverviewExampleDialog {
+export class DialogAudio {
   settingMsg= '';
   state: RecordingState;
   streamRef: any;
@@ -109,7 +120,7 @@ export class DialogOverviewExampleDialog {
 
 
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    public dialogRef: MatDialogRef<DialogAudio>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
     recordgreeting() {
       navigator.permissions.query({ name: 'microphone' }).then((result) => {
@@ -291,4 +302,20 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 
+}
+/*pictures*/
+@Component({
+  selector: ' mat-dialog-title',
+  template:`
+    <mat-card ngStyle.lt-sm="background:gold; height: 40vh; width: 65vw;" ngStyle.gt-xs="background:gold;  height: 40vh; width: 30vw;" fxLayout="column" fxLayoutAlign="center center">
+      <mat-card-title>picture</mat-card-title>
+    </mat-card>
+  `
+})
+export class DialogPictures
+{
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogPictures>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData){}
 }
