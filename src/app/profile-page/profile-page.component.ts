@@ -61,6 +61,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   openDialogFamily(){
   }
   openDialogGreeting(){
+    console.log('local',this.mylocaluser );
     this.audiodialogRef = this.dialog.open(DialogAudio, {
         data: this.mylocaluser,
         backdropClass: 'backdropBackground'
@@ -118,16 +119,19 @@ export class DialogAudio implements OnInit, OnDestroy {
   savetoDB: User;
 
   constructor(private cd: ChangeDetectorRef,private dom: DomSanitizer,private storage: AngularFireStorage, private afs: AngularFirestore,
-    public dialogRef: MatDialogRef<DialogAudio>,
-    @Inject(MAT_DIALOG_DATA) public data: User) {
+            public dialogRef: MatDialogRef<DialogAudio>, @Inject(MAT_DIALOG_DATA) public data: User) {
       this.state = RecordingState.STOPPED;
+      console.log('hi', data);
       if (data.downloadaudioURL !== null) {
+        this.audioFiles.push(data.downloadaudioURL);
+        console.log('hi',data.downloadaudioURL);
         this.playgreeting();
       } else {
         this.recordgreeting();
       } 
     }
     ngOnInit(){
+
       const mediaConstraints = {
         video: false,
         audio: true
@@ -175,7 +179,6 @@ export class DialogAudio implements OnInit, OnDestroy {
       this.settingMsg = 'Play your Voice Greeting';
   
       this.showmicrophone = false;
-      this.audioFiles.push(this.data.downloadaudioURL);
       this.disablemicrophone = true;
   
       this.showspinner = false;
@@ -396,7 +399,7 @@ export class DialogAudio implements OnInit, OnDestroy {
         await this.afs.firestore.runTransaction(transaction =>
           transaction.get(ref).then(sfdoc => {
             this.savetoDB = sfdoc.data() as User;
-            this.savetoDB.downloadaudioURL = '';
+            this.savetoDB.downloadaudioURL = null;
             transaction.update(ref, this.savetoDB);
           })
         );
@@ -413,6 +416,8 @@ export class DialogAudio implements OnInit, OnDestroy {
           transaction.get(ref).then(async sfdoc => {
             this.savetoDB = sfdoc.data() as User;
             this.savetoDB.downloadaudioURL = await uploadURL.ref.getDownloadURL();
+            this.data.downloadaudioURL = this.savetoDB.downloadaudioURL;
+            this.audioFiles.push(this.data.downloadaudioURL);
             transaction.update(ref, this.savetoDB);
           })
         );

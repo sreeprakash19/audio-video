@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(public auth: AuthService){
     this.auth.isOnline$.subscribe(internetstatus =>{
       if(internetstatus === false){
-        alert('Uh-oh, Connection Issue, Check Internet connection');
+        alert('Uh-oh, Connection Issue, Check Internet connection- app');
         this.auth.signOut();
       }
     });   
