@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'checkapp';
 
-  constructor(){
-
-   
+  constructor(public auth: AuthService){
+    this.auth.isOnline$.subscribe(internetstatus =>{
+      if(internetstatus === false){
+        alert('Uh-oh, Connection Issue, Check Internet connection');
+        this.auth.signOut();
+      }
+    });   
   }
 }
