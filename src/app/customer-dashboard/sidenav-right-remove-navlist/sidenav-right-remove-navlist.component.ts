@@ -97,7 +97,7 @@ export class SidenavRightRemoveNavlistComponent implements OnInit {
     if (this.sidenav.opened) {
       this.sidenav.toggle();
     }
-    console.log('this.showarrow', this.showarrow);
+    //console.log('this.showarrow', this.showarrow);
     if (this.showarrow) {
       this.flexchange.emit(false);
     } else {

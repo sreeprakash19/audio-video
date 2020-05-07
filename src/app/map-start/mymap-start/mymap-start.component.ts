@@ -57,7 +57,7 @@ export class MymapStartComponent implements OnInit {
   Searchdb(form: FormGroup){
     this.geometries.splice(0,this.geometries.length);
     this.geometries = this.auth.getAllmyMarker(form.value.pincode);
-    console.log(this.geometries);
+    //console.log(this.geometries);
   }
 
 

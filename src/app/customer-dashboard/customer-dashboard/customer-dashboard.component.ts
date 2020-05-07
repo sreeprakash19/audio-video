@@ -85,10 +85,10 @@ export class CustomerDashboardComponent implements OnInit {
     );
   }
   miniside(statesidenav: boolean){
-    console.log('rx statesidenav from toolbar', statesidenav);
+    //console.log('rx statesidenav from toolbar', statesidenav);
   }
   togglesidenav(statesidenav: boolean){    
-    console.log('clicked leftsidenav', statesidenav );    
+    //console.log('clicked leftsidenav', statesidenav );    
     this.arrow = statesidenav;
     switch(statesidenav){
       case true:
@@ -100,7 +100,7 @@ export class CustomerDashboardComponent implements OnInit {
         this.flexMobileSetting = '0 0 13.2%';
         break;
     }
-    console.log('Flex for mobile', this.flexMobileSetting );
+    //console.log('Flex for mobile', this.flexMobileSetting );
   }
   menutogglesidenav(){
     this.LeftSidenav.toggle();

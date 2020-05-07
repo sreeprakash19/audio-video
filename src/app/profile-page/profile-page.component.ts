@@ -23,35 +23,29 @@ export enum RecordingState {
 export class ProfilePageComponent implements OnInit {
   showspinner = true;
   name: string;
-
   mylocaluser: User = null;
   constructor(public auth: AuthService,public dialog: MatDialog) {
   this.auth.user$.subscribe( userdata => {
-  if(userdata !== null || userdata!== undefined){
-  this.mylocaluser = userdata;
-      }
-    })
-    
+    if(userdata !== null || userdata!== undefined){
+      this.mylocaluser = userdata;
+    }
+    });
    }
-
   ngOnInit(): void {
   }
   openDialogPersonal(){
   }
-   
  openDialogPictures(){
   const dialogRef = this.dialog.open(DialogPictures, {
-      data: {name: this.name}
+      data: this.mylocaluser
     });
-    console.log('video open', dialogRef);
+    //console.log('video open', dialogRef);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //console.log('The dialog was closed');
 
     });
   }
-
-  
   openDialogDates(){
   }
   
@@ -59,23 +53,17 @@ export class ProfilePageComponent implements OnInit {
   }
   openDialogGreeting(){
     const dialogRef = this.dialog.open(DialogAudio, {
-        width: '350px',
-        height:'450px',
-        data: {name: this.name}
-       
+        data: this.mylocaluser,
+        backdropClass: 'backdropBackground'
       });
-      console.log('audio open', dialogRef);
+
       dialogRef.afterClosed().subscribe(result => 
-{
-       console.log('The dialog was closed');
+      {
+  
       });
     }
-
-    
-    NextPage(){
-    }
-
-
+  NextPage(){
+  }
   dosomething() {
     this.showspinner = false;
   }
@@ -83,20 +71,18 @@ export class ProfilePageComponent implements OnInit {
 @Component({
   selector: 'dialog-overview-example-dialog',
   template:`
-  <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10%" style = "background:gold; font-family: Lato;" >
-  <h2 mat-dialog-title>
-  <mat-label>{{settingMsg}}</mat-label>  
-  </h2>
-  <h3>audio-Test</h3>
-  <mat-dialog-content>
-  <section fxFlex="0 1 75%" *ngIf="showmicrophone">
-  <button mat-fab color="primary"
-  (click)="startRecording()" [disabled]= "disablemicrophone" >
-  {{ state === 'recording' ? seconds : 'REC' }}</button> 
-</section>
-  </mat-dialog-content>
-  
-</mat-card>
+  <mat-card fxFlex ngStyle.lt-sm="background:gold; height: 40vh; width: 65vw;" ngStyle.gt-xs=" height: 40vh; width: 30vw;" fxLayout="column" fxLayoutAlign="space-around center">
+    <mat-card-title>{{settingMsg}}</mat-card-title>  
+    <mat-card-content  *ngIf="showmicrophone">
+    <button mat-fab color="primary"
+    (click)="startRecording()" [disabled]= "disablemicrophone" >
+    {{ state === 'recording' ? seconds : 'REC' }}</button> 
+  </mat-card-content>
+  <div mat-dialog-actions>
+  <button mat-raised-button color ="primary" (click)="ontask()" *ngIf="showbutton" [disabled]= "disablebutton" >{{AudioOption}} </button>
+  <button mat-raised-button  color="primary" (click)="goback()" [disabled]= "disableback" cdkFocusInitial>Back</button>
+  </div>
+  </mat-card>
   `
 
 })
@@ -105,7 +91,7 @@ export class DialogAudio {
   state: RecordingState;
   streamRef: any;
   disablemicrophone: boolean;
-  showmicrophone; boolean;
+  showmicrophone: boolean;
   disablebutton: boolean;
   showbutton: boolean;
   audioFiles = [];
@@ -121,9 +107,17 @@ export class DialogAudio {
 
   constructor(
     public dialogRef: MatDialogRef<DialogAudio>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: User) {
+      this.state = RecordingState.STOPPED;
+      if (data.downloadaudioURL !== null) {
+        this.playgreeting();
+      } else {
+        this.recordgreeting();
+      } 
+    }
     recordgreeting() {
       navigator.permissions.query({ name: 'microphone' }).then((result) => {
+        console.log('result', result.state);
         switch (result.state) {
           case 'granted':
             this.showgranted();
@@ -198,7 +192,7 @@ export class DialogAudio {
   
     }
     showgranted() {
-      this.settingMsg = 'Set Your Voice Greeting';
+      this.settingMsg = 'Record Greeting!';
   
       this.showmicrophone = true;
       this.disablemicrophone = false;
@@ -233,7 +227,8 @@ export class DialogAudio {
       navigator.mediaDevices
         .getUserMedia(mediaConstraints);
       return;
-    }  connectionerror() {
+    } 
+    connectionerror() {
       this.disablebutton = true;
       alert('Uh-oh, Connection Issue, Check Internet connection');
     }
@@ -249,59 +244,94 @@ export class DialogAudio {
       this.disableback = false;
   
       alert('Uh-oh, Connection Issue, Check Internet connection');
+    }    
+    startRecording() {
+      if (this.state === RecordingState.STOPPED) {//start recording
+        this.state = RecordingState.RECORDING;
+        const mediaConstraints = {
+          video: false,
+          audio: true
+        };
+        navigator.mediaDevices
+          .getUserMedia(mediaConstraints)
+          .then(this.mediaavialable.bind(this), this.mediaerror.bind(this));
+        this.seconds = 9;
+        
+        this.clearTimer();
+        this.intervalId = window.setInterval(() => {
+          this.seconds -= 1;
+          if (this.seconds === 0) {
+            this.mediaRecorder.stop();
+            this.streamRef.getTracks().map((val) => {
+              val.stop();
+              return;
+            });
+          }
+        }, 1000);
+      } else { //pressed again
+        this.mediaRecorder.stop();
+        this.streamRef.getTracks().map((val) => {
+          val.stop();
+          return;
+        });
+      }
     }
+    mediaerror() {
+      this.showError();
+    }
+    clearTimer() {
+      clearInterval(this.intervalId);
+    }
+    mediaavialable(stream)
+  {
+    this.mediaRecorder = new MediaRecorder(stream);
+    this.streamRef = stream;
+    this.mediaRecorder.start();
+    this.mediaRecorder.ondataavailable = e => {
     
-  startRecording() {
-    if (this.state === RecordingState.STOPPED) {//start recording
-      this.state = RecordingState.RECORDING;
-      const mediaConstraints = {
-        video: false,
-        audio: true
-      };
-      navigator.mediaDevices
-        .getUserMedia(mediaConstraints)
-        .then(this.mediaavialable.bind(this), this.mediaerror.bind(this));
-      this.seconds = 9;
-      
-      this.clearTimer();
-      this.intervalId = window.setInterval(() => {
-        this.seconds -= 1;
-        if (this.seconds === 0) {
-          this.mediaRecorder.stop();
-          this.streamRef.getTracks().map((val) => {
-            val.stop();
-            return;
-          });
-        }
-      }, 1000);
-    } else { //pressed again
-      this.mediaRecorder.stop();
-      this.streamRef.getTracks().map((val) => {
-        val.stop();
-        return;
-      });
+      this.savegreeting();
     }
-  }
-  mediaerror() {
-    this.showError();
-  }
-  clearTimer() {
-    clearInterval(this.intervalId);
-  }
-  mediaavialable(stream)
-{
-  this.mediaRecorder = new MediaRecorder(stream);
-  this.streamRef = stream;
-  this.mediaRecorder.start();
-  this.mediaRecorder.ondataavailable = e => {
-   
-    this.savegreeting();
-  }
-}     
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+  }     
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+    goback(){
+      this.dialogRef.close(this.data);
+    }
+    ontask() {
+      switch (this.AudioOption) {
+        case 'Settings':
+          this.showSettings();
+          break;
+  
+        case 'Delete':
+          this.settingMsg = 'Deleting...';
+  
+          //audio option is pushed
+          this.showspinner = true;
+  
+          this.showbutton = false;
+          this.disablebutton = false;
+          this.AudioOption = 'Delete';
+  
+          this.disableback = true;
+          //DB Deletion
 
+          break;
+        case 'Save':
+          this.settingMsg = 'Saving...';
+  
+          this.showspinner = true;
+  
+          this.showbutton = false;
+          this.disablebutton = false;
+          this.AudioOption = 'Delete';
+  
+          this.disableback = true;
+          //DB Save
+          break;
+      }
+    }
 }
 /*pictures*/
 @Component({
@@ -314,7 +344,6 @@ export class DialogAudio {
 })
 export class DialogPictures
 {
-
   constructor(
     public dialogRef: MatDialogRef<DialogPictures>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData){}

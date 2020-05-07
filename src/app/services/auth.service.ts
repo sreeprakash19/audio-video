@@ -25,6 +25,7 @@ export interface User{
   customdisplayName ?: string;
   customphotoURL?: string;
   GiftsBank?: number;
+  downloadaudioURL?: string;
 }
 export interface PincodeItem { Id: string; Lat: string; Lng: string; Pin: string; createdAt: Timestamp; }
 
@@ -85,7 +86,8 @@ export class AuthService {
       BirthDate : 'Jan 1',
       customdisplayName : '',
       customphotoURL : user.photoURL,
-      GiftsBank: 0
+      GiftsBank: 0,
+      downloadaudioURL: null
     };
     const returningUser = {
       uid: user.uid,
@@ -117,7 +119,7 @@ export class AuthService {
       querySnapshot => {
         querySnapshot.forEach(doc => {
           const mycoordinates = [Number(doc.Lat), Number(doc.Lng)]
-          console.log('query return', mycoordinates);
+          //console.log('query return', mycoordinates);
           this.mypinitems.push( { type: 'Point', coordinates: mycoordinates });
         });
       });

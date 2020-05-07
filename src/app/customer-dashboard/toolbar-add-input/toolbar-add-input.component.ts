@@ -13,7 +13,7 @@ export class ToolbarAddInputComponent implements OnInit {
   ngOnInit(): void {
   }
   menuclick(){
-    console.log('clicked menu');
+    //console.log('clicked menu');
     if(!this.isMenuOpen) {
       this.menuchange.emit(false);
     } else {
