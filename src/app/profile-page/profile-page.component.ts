@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ChangeDetectorRef,ViewChild} from '@angular/core';
 import { AuthService, User } from '../services/auth.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -173,6 +173,7 @@ export class DialogAudio implements OnInit, OnDestroy {
           }
         };
       });
+      console.log("record greeting");
     }
     playgreeting() {
 
@@ -188,6 +189,7 @@ export class DialogAudio implements OnInit, OnDestroy {
       this.AudioOption = 'Delete';
   
       this.disableback = false;
+      console.log("play greeting");
     }
   
     savegreeting() {
@@ -431,14 +433,153 @@ export class DialogAudio implements OnInit, OnDestroy {
 @Component({
   selector: ' mat-dialog-title',
   template:`
-    <mat-card ngStyle.lt-sm="background:gold; height: 40vh; width: 65vw;" ngStyle.gt-xs="background:gold;  height: 40vh; width: 30vw;" fxLayout="column" fxLayoutAlign="center center">
-      <mat-card-title>picture</mat-card-title>
+  <mat-card fxFlex ngStyle.lt-sm="background:gold; height: 40vh; width: 65vw;" ngStyle.gt-xs=" height: 40vh; width: 30vw;" fxLayout="column" fxLayoutAlign="space-around center">
+    <mat-label>{{settingMsg}}</mat-label>
+    <div mat-dialog-content >
+    <video #video autoplay playsinline ></video>
+    </div>
+   <div mat-dialog-actions>
+  <button mat-raised-button color ="primary" (click)="ontask()" *ngIf="showbutton" [disabled]= "disablebutton" >{{AudioOption}} </button>
+  <button mat-raised-button  color="primary" (click)="goback()" [disabled]= "disableback" cdkFocusInitial>Back</button>
+  </div>
+     
     </mat-card>
   `
 })
 export class DialogPictures
 {
-  constructor(
-    public dialogRef: MatDialogRef<DialogPictures>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData){}
-}
+ settingMsg = '';
+  state: RecordingState;
+  streamRef: any;
+  disablemicrophone: boolean;
+  showmicrophone: boolean;
+  disablebutton: boolean;
+  showbutton: boolean;
+  audioFiles = [];
+  showspinner = false;
+  AudioOption = 'Delete';
+  seconds = 0;
+  public isOnline: boolean = navigator.onLine;
+  intervalId = 0;
+  mediaRecorder: any;
+  disableback = false;
+  chunks = [];
+  imageFile: any;
+  savetoDB: User;
+
+
+  showcamera = false;
+  showcanvas = true;
+  
+  @ViewChild('video', { static: false }) video: any;
+  @ViewChild('canvas', { static: true }) canvas: any;
+  canvasElement: any;
+  context: any;
+  videoElement: HTMLVideoElement;
+  videostreamRef: any;
+
+    constructor(private cd: ChangeDetectorRef,private dom: DomSanitizer,private storage: AngularFireStorage, private afs: AngularFirestore,
+            public dialogRef: MatDialogRef<DialogPictures>, @Inject(MAT_DIALOG_DATA) public data: User) {
+      this.state = RecordingState.STOPPED;
+      console.log('hi', data);
+      if (data.downloadaudioURL !== null) {
+        this.audioFiles.push(data.downloadaudioURL);
+        console.log('hi',data.downloadaudioURL);
+        this.playgreeting();
+      } else {
+        this.recordgreeting();
+      } 
+    }
+     playgreeting() {
+
+    this.settingMsg = 'Your Profile Image';
+    this.showspinner = false;
+    this.disablebutton = false;
+    this.AudioOption = 'Delete';
+    this.disableback = false;
+    console.log("playgreeting");
+  }
+ showSettings() {
+      const mediaConstraints = {
+        video: true,
+        audio: false
+      };
+      navigator.mediaDevices
+        .getUserMedia(mediaConstraints);
+      return;
+    }
+        recordgreeting() {
+      navigator.permissions.query({ name: 'camera' }).then((result) => {
+        console.log('result', result.state);
+        switch (result.state) {
+          case 'granted':
+            this.showgranted();
+            break;
+          case 'prompt':
+            this.showprompt();
+            break;
+          case 'denied':
+            this.showdenied();
+            break;
+        }
+        result.onchange = (event) => {
+          switch (result.state) {
+            case 'granted':
+              this.showgranted();
+              break;
+            case 'prompt':
+              this.showprompt();
+              break;
+            case 'denied':
+              this.showdenied();
+              break;
+          }
+        };
+      });
+      console.log("record greeting");
+    }
+
+    showgranted() {
+    this.settingMsg = 'Please wait !..';
+    this.videoElement = this.video.nativeElement;
+    navigator.mediaDevices
+      .getUserMedia({
+        video: { width: 200, height: 200, facingMode: 'user', aspectRatio: .5 }
+      })
+      .then(stream => {
+        this.videoElement.srcObject = stream;
+        this.videostreamRef = stream;
+        this.settingMsg = '4Set Your Profile Picturess';
+      });
+       this.showcamera = true;
+        this.showbutton = true;
+         this.disablebutton = false;
+          this.AudioOption = 'Take Picture';
+           this.disableback = false;
+            console.log("granted");
+  }
+    showprompt(){
+    this.settingMsg = 'Change Camera settings';
+    this.showbutton = true;
+    this.disablebutton = false;
+    this.AudioOption = 'Settings';
+    this.disableback = false;
+    }
+    showdenied(){
+    this.settingMsg = 'camera Setting is denied';
+    this.showbutton = false;
+    this.disablebutton = false;
+    this.AudioOption = 'Settings';
+    this.disableback = false;
+    }
+     async ontask() {
+     switch (this.AudioOption) {
+      case 'Settings':
+        this.showSettings();
+        break;
+     }
+     }
+      goback(){
+      this.dialogRef.close(this.data);
+    }
+  }

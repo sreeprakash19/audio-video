@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppSharedModule } from './app-shared/app-shared.module';
 import { CustomerDashboardModule } from './customer-dashboard/customer-dashboard.module';
+import { WorkStatusComponent } from './work-status/work-status.component';
 
 const config = {
   apiKey: 'AIzaSyBpwUMO1cdPkz0kBQGu1Omj55Ww3r_Lgfk',
@@ -26,7 +27,8 @@ const config = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WorkStatusComponent
   ],
   imports: [
     BrowserModule,
